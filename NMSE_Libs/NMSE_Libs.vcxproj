@@ -92,12 +92,14 @@
     <ClInclude Include="Hooking.h" />
     <ClInclude Include="ModIterator.h" />
     <ClInclude Include="Steam.h" />
+    <ClInclude Include="VirtualAddress.h" />
     <ClInclude Include="VirtualWrite.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Hooking.cpp" />
     <ClCompile Include="ModIterator.cpp" />
     <ClCompile Include="Steam.cpp" />
+    <ClCompile Include="VirtualAddress.cpp" />
     <ClCompile Include="VirtualWrite.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

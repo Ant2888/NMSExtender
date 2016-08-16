@@ -21,6 +21,9 @@
     <ClInclude Include="VirtualWrite.h">
       <Filter>utils</Filter>
     </ClInclude>
+    <ClInclude Include="VirtualAddress.h">
+      <Filter>addressing</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Hooking.cpp">
@@ -34,6 +37,9 @@
     </ClCompile>
     <ClCompile Include="VirtualWrite.cpp">
       <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="VirtualAddress.cpp">
+      <Filter>addressing</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
