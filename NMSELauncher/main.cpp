@@ -9,19 +9,23 @@ int main(int argc, char* argv) {
 	const char* dllName = "NMSE Core.dll";
 	std::string prgmName = "NMS.exe";
 	std::string curPath = RunTimePath();
-	if (!CheckSteam()) {
-		std::cout << "Steam not open... Launching\n";
-		LaunchSteam();
-	}
 
+	if (SteamVersion(curPath)){
+#define STEAM
+		if (!CheckSteam()) {
+			std::cout << "Steam not open... Launching\n";
+			LaunchSteam();
+		}
+	}	
 	std::cout << "Staring NMS\n";
 
 	std::string exe = curPath + "\\" + prgmName;
 
+#ifdef STEAM
 	const char* nmsId = "275850";
 	SetEnvironmentVariable("SteamGameId", nmsId);
 	SetEnvironmentVariable("SteamAppID", nmsId);
-
+#endif
 	STARTUPINFO startup = { 0 };
 	PROCESS_INFORMATION nmsProc = { 0 };
 
@@ -35,7 +39,7 @@ int main(int argc, char* argv) {
 	std::string NMSEsteam = curPath + "\\NMSE_steam.dll";
 	bool isInjected = InjectDLLThread(&nmsProc, NMSEsteam.c_str(), true, false);
 	if (isInjected) {
-		std::cout << "Steam loader injected...\n";
+		std::cout << "Loader injected...\n";
 	}
 	else {
 		std::cout << "Shutting down\n";

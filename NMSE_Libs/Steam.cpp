@@ -69,3 +69,12 @@ void LaunchSteam() {
 		std::cout << "Steam sucesfully started!\n";
 	}
 }
+
+bool SteamVersion(std::string runtimeDir){
+	size_t steamVers = runtimeDir.find("\\steamapps\\common\\");
+	if (steamVers == std::string::npos){
+		return false;
+	}
+	std::cout << "Using steam";
+	return true;
+}
