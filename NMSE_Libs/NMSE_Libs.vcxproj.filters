@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="utils">
+      <UniqueIdentifier>{da4e84e0-2ed2-46c3-bebd-b0bd93ad5d0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addressing">
+      <UniqueIdentifier>{0d2b95d7-f885-4185-a252-0701fc89ea36}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Hooking.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ModIterator.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Steam.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="VirtualWrite.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Hooking.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="ModIterator.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Steam.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="VirtualWrite.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
