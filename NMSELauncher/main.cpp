@@ -52,6 +52,6 @@ int main(int argc, char* argv) {
 	std::cout << "\nProgram Injected Everything Succesfully!\n";
 	CloseHandle(nmsProc.hProcess);
 	CloseHandle(nmsProc.hThread);
-	std::cin.ignore();
+	Sleep(1000);
 	return 0;
 }
