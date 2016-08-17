@@ -7,6 +7,9 @@
     <Filter Include="addressing">
       <UniqueIdentifier>{0d2b95d7-f885-4185-a252-0701fc89ea36}</UniqueIdentifier>
     </Filter>
+    <Filter Include="debugging">
+      <UniqueIdentifier>{16018b3b-418d-45d6-aff5-b9e46b8fe367}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Hooking.h">
@@ -24,6 +27,12 @@
     <ClInclude Include="VirtualAddress.h">
       <Filter>addressing</Filter>
     </ClInclude>
+    <ClInclude Include="GlobalLogger.h">
+      <Filter>debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="FFileStream.h">
+      <Filter>debugging</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Hooking.cpp">
@@ -40,6 +49,12 @@
     </ClCompile>
     <ClCompile Include="VirtualAddress.cpp">
       <Filter>addressing</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalLogger.cpp">
+      <Filter>debugging</Filter>
+    </ClCompile>
+    <ClCompile Include="FFileStream.cpp">
+      <Filter>debugging</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

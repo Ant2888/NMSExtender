@@ -1,6 +1,9 @@
-﻿Build started 8/16/2016 8:51:15 AM.
-     1>Project "C:\Users\Anthony\Documents\NMSE\NMSExtender\NMSELauncher\NMSELauncher.vcxproj" on node 3 (Build target(s)).
-     1>Link:
+﻿Build started 8/17/2016 9:54:34 AM.
+     1>Project "C:\Users\Anthony\Documents\NMSE\NMSExtender\NMSELauncher\NMSELauncher.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         F:\Program Files (x86)\Microsoft Visual Studio 2012\VC\bin\x86_amd64\CL.exe /c /IC:\Users\Anthony\Documents\NMSE\NMSExtender\ /IC:\Users\Anthony\Documents\NMSE\NMSExtender\\.. /Zi /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm- /EHsc /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc110.pdb" /Gd /TP /errorReport:prompt main.cpp
+         main.cpp
+       Link:
          F:\Program Files (x86)\Microsoft Visual Studio 2012\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Anthony\Documents\NMSE\NMSExtender\x64\Debug\NMSELauncher.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Anthony\Documents\NMSE\NMSExtender\x64\Debug\NMSELauncher.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Anthony\Documents\NMSE\NMSExtender\x64\Debug\NMSELauncher.lib" /MACHINE:X64 x64\Debug\main.obj
          C:\Users\Anthony\Documents\NMSE\NMSExtender\x64\Debug\NMSE_Libs.lib
          NMSELauncher.vcxproj -> C:\Users\Anthony\Documents\NMSE\NMSExtender\x64\Debug\NMSELauncher.exe
@@ -8,4 +11,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.95
+Time Elapsed 00:00:00.91

@@ -1,7 +1,14 @@
-﻿Build started 8/16/2016 8:51:14 AM.
+﻿Build started 8/17/2016 9:51:01 AM.
      1>Project "C:\Users\Anthony\Documents\NMSE\NMSExtender\NMSE_Libs\NMSE_Libs.vcxproj" on node 2 (Build target(s)).
-     1>Lib:
-         F:\Program Files (x86)\Microsoft Visual Studio 2012\VC\bin\x86_amd64\Lib.exe /OUT:"C:\Users\Anthony\Documents\NMSE\NMSExtender\x64\Debug\NMSE_Libs.lib" /NOLOGO /MACHINE:X64 x64\Debug\Hooking.obj
+     1>ClCompile:
+         F:\Program Files (x86)\Microsoft Visual Studio 2012\VC\bin\x86_amd64\CL.exe /c /IC:\Users\Anthony\Documents\NMSE\NMSExtender\ /IC:\Users\Anthony\Documents\NMSE\NMSExtender\\.. /Zi /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _LIB /D _MBCS /Gm- /EHsc /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc110.pdb" /Gd /TP /errorReport:prompt Hooking.cpp Steam.cpp
+         Hooking.cpp
+         Steam.cpp
+         Generating Code...
+       Lib:
+         F:\Program Files (x86)\Microsoft Visual Studio 2012\VC\bin\x86_amd64\Lib.exe /OUT:"C:\Users\Anthony\Documents\NMSE\NMSExtender\x64\Debug\NMSE_Libs.lib" /NOLOGO /MACHINE:X64 x64\Debug\FFileStream.obj
+         x64\Debug\GlobalLogger.obj
+         x64\Debug\Hooking.obj
          x64\Debug\ModIterator.obj
          x64\Debug\Steam.obj
          x64\Debug\VirtualAddress.obj
@@ -11,4 +18,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.10
+Time Elapsed 00:00:01.91

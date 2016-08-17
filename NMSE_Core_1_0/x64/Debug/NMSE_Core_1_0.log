@@ -1,6 +1,12 @@
-﻿Build started 8/16/2016 8:51:14 AM.
+﻿Build started 8/17/2016 9:51:03 AM.
      1>Project "C:\Users\Anthony\Documents\NMSE\NMSExtender\NMSE_Core_1_0\NMSE_Core_1_0.vcxproj" on node 2 (Build target(s)).
-     1>Link:
+     1>ClCompile:
+         F:\Program Files (x86)\Microsoft Visual Studio 2012\VC\bin\x86_amd64\CL.exe /c /IC:\Users\Anthony\Documents\NMSE\NMSExtender\ /IC:\Users\Anthony\Documents\NMSE\NMSExtender\\.. /Zi /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D NMSE_EXPORTS /D RUNTIME /D RUNTIME_VERSION=0x010700C0 /D _WINDLL /D _MBCS /Gm- /EHsc /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc110.pdb" /Gd /TP /errorReport:prompt AddonManager.cpp Core.cpp
+         AddonManager.cpp
+     1>AddonManager.cpp(52): warning C4930: 'std::string err(void)': prototyped function not called (was a variable definition intended?)
+         Core.cpp
+         Generating Code...
+       Link:
          F:\Program Files (x86)\Microsoft Visual Studio 2012\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Anthony\Documents\NMSE\NMSExtender\x64\Debug\NMSE_Core_1_0.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /DEF:"exports.def" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Anthony\Documents\NMSE\NMSExtender\x64\Debug\NMSE_Core_1_0.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Anthony\Documents\NMSE\NMSExtender\x64\Debug\NMSE_Core_1_0.lib" /MACHINE:X64 /DLL x64\Debug\AddonManager.obj
          x64\Debug\Core.obj
          C:\Users\Anthony\Documents\NMSE\NMSExtender\x64\Debug\NMSE_Libs.lib
@@ -10,4 +16,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.70
+Time Elapsed 00:00:02.07

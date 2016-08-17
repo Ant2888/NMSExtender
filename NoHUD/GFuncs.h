@@ -3,5 +3,6 @@
 #include <stdio.h>
 #include <iostream>
 
-void ShowHud(bool);
+void ShowHudSTEAM(bool);
 void Apply();
+void ShowHudGOG(bool);

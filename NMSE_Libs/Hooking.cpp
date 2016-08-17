@@ -23,7 +23,7 @@ static bool DoInjectDLLThread(PROCESS_INFORMATION * info, const char * dllPath, 
 					switch (WaitForSingleObject(thread, noTimeout ? INFINITE : 1000 * 60))	// timeout = one minute
 					{
 					case WAIT_OBJECT_0:
-						std::cout << "Hook Sucessful!\n";
+						std::cout << "Hook Sucessfull!\n";
 						result = true;
 						break;
 					case WAIT_ABANDONED:
@@ -59,7 +59,7 @@ bool InjectDLLThread(PROCESS_INFORMATION * info, const char * dllPath, bool sync
 	return result;
 }
 
-void* GetIATAddr(void* module, const char* searchDllName, const char* searchImportName) {
+/*void* GetIATAddr(void* module, const char* searchDllName, const char* searchImportName) {
 	UINT8* base = (UINT8*)module;
 	IMAGE_DOS_HEADER* dosHeader = (IMAGE_DOS_HEADER *)base;
 	IMAGE_NT_HEADERS* ntHeader = (IMAGE_NT_HEADERS *)(base + dosHeader->e_lfanew);
@@ -91,4 +91,4 @@ void* GetIATAddr(void* module, const char* searchDllName, const char* searchImpo
 	}
 
 	return NULL;
-}
+}*/

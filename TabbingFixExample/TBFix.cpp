@@ -65,7 +65,8 @@ extern "C"
 	bool OnStart(HMODULE& mHandle, ModDetails& info){
 		localH = mHandle;
 		info.name = "Tabbing Fix";
-		info.version = 1000000; //1xx0xx0 : 1.0.0
+		//if (info.version == GOG); // DO something
+		//if (info.version == STEAM) //Do something else etc etc
 		// Do whatever you want from here on -- send out a thread to do constant monitoring. Only do patches or just start a thread for patching
 		// If this gets help up the rest of the program will fault
 		hMonitor = CreateThread(0, 0, ThreadProc, 0, 0, 0);

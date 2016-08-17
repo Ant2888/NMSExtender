@@ -9,6 +9,7 @@ public:
 	~AddonManager();
 	void Init();
 	void UnLoad();
+	VERSION GetNMSVersion();
 private:
 	struct MOD{
 		HMODULE mHandle;

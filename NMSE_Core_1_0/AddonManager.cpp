@@ -1,6 +1,7 @@
 #include "AddonManager.h"
 #include "NMSE_Libs\Hooking.h"
 #include "NMSE_Libs\ModIterator.h"
+#include "NMSE_Libs\Steam.h"
 
 AddonManager modManager;
 
@@ -8,6 +9,15 @@ AddonManager::AddonManager(){}
 
 AddonManager::~AddonManager(){
 	UnLoad();
+}
+
+VERSION AddonManager::GetNMSVersion(){
+	if (SteamVersion(RunTimePath())){
+		return STEAM;
+	}
+	else{
+		return GOG;
+	}
 }
 
 void AddonManager::UnLoad(){
@@ -39,8 +49,8 @@ void AddonManager::LoadMods(void){
 			mod.startUp = (_OnStart)GetProcAddress(mod.mHandle, "OnStart");
 			if (mod.startUp){
 				if (!CallStart(mod)){
-					std::string err(mIter.GetFullPath());
-					MessageBox(0, "Mod Failed To Load!", err.c_str(), MB_ICONWARNING | MB_OK);
+					std::string err();
+					MessageBox(0, "Mod Failed To Load!", mIter.GetFullPath().c_str(), MB_ICONWARNING | MB_OK);
 				}
 				else{
 					loaded = true;
@@ -64,6 +74,7 @@ void AddonManager::LoadMods(void){
 
 bool AddonManager::CallStart(MOD& mod){
 	__try{
+		mod.modDetails.version = GetNMSVersion();
 		if (!mod.startUp(mod.mHandle, mod.modDetails)) return false;
 		return true;
 	}

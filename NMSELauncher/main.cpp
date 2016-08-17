@@ -10,22 +10,28 @@ int main(int argc, char* argv) {
 	std::string prgmName = "NMS.exe";
 	std::string curPath = RunTimePath();
 
-	if (SteamVersion(curPath)){
-#define STEAM
+	std::cout << "Using runtime: " << curPath << "\n";
+	bool steam;
+	if (steam = SteamVersion(curPath)){
+		std::cout << "Using Steam Version\n";
 		if (!CheckSteam()) {
 			std::cout << "Steam not open... Launching\n";
 			LaunchSteam();
 		}
-	}	
+	}
+	else{
+		std::cout << "Using GOG Version";
+	}
 	std::cout << "Staring NMS\n";
 
 	std::string exe = curPath + "\\" + prgmName;
 
-#ifdef STEAM
-	const char* nmsId = "275850";
-	SetEnvironmentVariable("SteamGameId", nmsId);
-	SetEnvironmentVariable("SteamAppID", nmsId);
-#endif
+	if (steam){
+		const char* nmsId = "275850";
+		SetEnvironmentVariable("SteamGameId", nmsId);
+		SetEnvironmentVariable("SteamAppID", nmsId);
+	}
+
 	STARTUPINFO startup = { 0 };
 	PROCESS_INFORMATION nmsProc = { 0 };
 
@@ -42,7 +48,7 @@ int main(int argc, char* argv) {
 		std::cout << "Loader injected...\n";
 	}
 	else {
-		std::cout << "Shutting down\n";
+		std::cout << "Loader Injection Failed\n";
 	}
 
 	if (!ResumeThread(nmsProc.hThread)) {
@@ -52,6 +58,6 @@ int main(int argc, char* argv) {
 	std::cout << "\nProgram Injected Everything Succesfully!\n";
 	CloseHandle(nmsProc.hProcess);
 	CloseHandle(nmsProc.hThread);
-	Sleep(1000);
+	Sleep(10000);
 	return 0;
 }
