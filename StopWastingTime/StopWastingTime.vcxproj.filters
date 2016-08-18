@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="StopDelays.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="GameFuncs">
+      <UniqueIdentifier>{fbed050a-e053-4914-a1b0-74eb6696c807}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="exports.def" />
+  </ItemGroup>
+</Project>

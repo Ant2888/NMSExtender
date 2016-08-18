@@ -76,6 +76,5 @@ bool SteamVersion(std::string runtimeDir){
 	if (steamVers == std::string::npos){
 		return false;
 	}
-	std::cout << "Using steam";
 	return true;
 }

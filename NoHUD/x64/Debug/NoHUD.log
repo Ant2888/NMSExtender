@@ -1,4 +1,4 @@
-﻿Build started 8/17/2016 10:16:06 AM.
+﻿Build started 8/18/2016 4:13:23 PM.
      1>Project "C:\Users\Anthony\Documents\NMSE\NMSExtender\NoHUD\NoHUD.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          F:\Program Files (x86)\Microsoft Visual Studio 2012\VC\bin\x86_amd64\CL.exe /c /IC:\Users\Anthony\Documents\NMSE\NMSExtender\ /IC:\Users\Anthony\Documents\NMSE\NMSExtender\\.. /Zi /nologo /W3 /WX- /sdl /Od /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D NOHUD_EXPORTS /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc110.pdb" /Gd /TP /errorReport:prompt GFuncs.cpp
@@ -13,4 +13,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.65
+Time Elapsed 00:00:02.39
