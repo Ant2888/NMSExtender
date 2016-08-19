@@ -1,10 +1,6 @@
-﻿Build started 8/18/2016 11:31:29 AM.
+﻿Build started 8/18/2016 11:56:40 PM.
      1>Project "C:\Users\Anthony\Documents\NMSE\NMSExtender\NMSE_Libs\NMSE_Libs.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         F:\Program Files (x86)\Microsoft Visual Studio 2012\VC\bin\x86_amd64\CL.exe /c /IC:\Users\Anthony\Documents\NMSE\NMSExtender\ /IC:\Users\Anthony\Documents\NMSE\NMSExtender\\.. /Zi /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _LIB /D _MBCS /Gm- /EHsc /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc110.pdb" /Gd /TP /errorReport:prompt VersionControl.cpp
-         VersionControl.cpp
-     1>VersionControl.cpp(44): warning C4101: 'versNum' : unreferenced local variable
-       Lib:
+     1>Lib:
          F:\Program Files (x86)\Microsoft Visual Studio 2012\VC\bin\x86_amd64\Lib.exe /OUT:"C:\Users\Anthony\Documents\NMSE\NMSExtender\x64\Debug\NMSE_Libs.lib" /NOLOGO /MACHINE:X64 x64\Debug\FFileStream.obj
          x64\Debug\GlobalLogger.obj
          x64\Debug\Hooking.obj
@@ -18,4 +14,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.95
+Time Elapsed 00:00:00.21

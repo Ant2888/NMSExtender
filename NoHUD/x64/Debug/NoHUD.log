@@ -1,4 +1,4 @@
-﻿Build started 8/18/2016 4:13:23 PM.
+﻿Build started 8/18/2016 11:57:12 PM.
      1>Project "C:\Users\Anthony\Documents\NMSE\NMSExtender\NoHUD\NoHUD.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          F:\Program Files (x86)\Microsoft Visual Studio 2012\VC\bin\x86_amd64\CL.exe /c /IC:\Users\Anthony\Documents\NMSE\NMSExtender\ /IC:\Users\Anthony\Documents\NMSE\NMSExtender\\.. /Zi /nologo /W3 /WX- /sdl /Od /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D NOHUD_EXPORTS /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc110.pdb" /Gd /TP /errorReport:prompt GFuncs.cpp
@@ -8,9 +8,11 @@
          x64\Debug\main.obj
          C:\Users\Anthony\Documents\NMSE\NMSExtender\x64\Debug\NMSE_Core_1_0.lib
          C:\Users\Anthony\Documents\NMSE\NMSExtender\x64\Debug\NMSE_Libs.lib
+         LINK : C:\Users\Anthony\Documents\NMSE\NMSExtender\x64\Debug\NoHUD.dll not found or not built by the last incremental link; performing full link
+            Creating library C:\Users\Anthony\Documents\NMSE\NMSExtender\x64\Debug\NoHUD.lib and object C:\Users\Anthony\Documents\NMSE\NMSExtender\x64\Debug\NoHUD.exp
          NoHUD.vcxproj -> C:\Users\Anthony\Documents\NMSE\NMSExtender\x64\Debug\NoHUD.dll
      1>Done Building Project "C:\Users\Anthony\Documents\NMSE\NMSExtender\NoHUD\NoHUD.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.39
+Time Elapsed 00:00:01.51

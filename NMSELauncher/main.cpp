@@ -13,7 +13,8 @@ int main(int argc, char* argv) {
 
 	std::cout << "Using runtime: " << curPath << "\n";
 	bool steam;
-	if (steam = SteamVersion(curPath)){
+	if (SteamVersion(curPath)){
+		steam = true;
 		std::cout << "Using Steam Version\n";
 		if (!CheckSteam()) {
 			std::cout << "Steam not open... Launching\n";
@@ -21,6 +22,7 @@ int main(int argc, char* argv) {
 		}
 	}
 	else{
+		steam = false;
 		std::cout << "Using GOG Version\n";
 	}
 	std::cout << "Staring NMS\n";

@@ -72,8 +72,7 @@ void LaunchSteam() {
 
 //You can give and Runtime as long as it is the full path
 bool SteamVersion(std::string runtimeDir){
-	size_t steamVers = runtimeDir.find("\\steamapps\\common\\");
-	if (steamVers == std::string::npos){
+	if (runtimeDir.find("GOG") != std::string::npos){
 		return false;
 	}
 	return true;

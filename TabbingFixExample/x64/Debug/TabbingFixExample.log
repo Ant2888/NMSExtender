@@ -1,4 +1,4 @@
-﻿Build started 8/18/2016 11:21:28 AM.
+﻿Build started 8/18/2016 11:56:42 PM.
      1>Project "C:\Users\Anthony\Documents\NMSE\NMSExtender\TabbingFixExample\TabbingFixExample.vcxproj" on node 3 (Build target(s)).
      1>Link:
          F:\Program Files (x86)\Microsoft Visual Studio 2012\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Anthony\Documents\NMSE\NMSExtender\x64\Debug\TabbingFixExample.dll" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /DEF:"exports.def" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"C:\Users\Anthony\Documents\NMSE\NMSExtender\x64\Debug\TabbingFixExample.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Anthony\Documents\NMSE\NMSExtender\x64\Debug\TabbingFixExample.lib" /MACHINE:X64 /DLL x64\Debug\TBFix.obj
@@ -8,4 +8,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.15
+Time Elapsed 00:00:00.20
