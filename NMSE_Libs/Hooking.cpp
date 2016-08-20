@@ -58,37 +58,3 @@ bool InjectDLLThread(PROCESS_INFORMATION * info, const char * dllPath, bool sync
 	}
 	return result;
 }
-
-/*void* GetIATAddr(void* module, const char* searchDllName, const char* searchImportName) {
-	UINT8* base = (UINT8*)module;
-	IMAGE_DOS_HEADER* dosHeader = (IMAGE_DOS_HEADER *)base;
-	IMAGE_NT_HEADERS* ntHeader = (IMAGE_NT_HEADERS *)(base + dosHeader->e_lfanew);
-	IMAGE_IMPORT_DESCRIPTOR* importTable =
-		(IMAGE_IMPORT_DESCRIPTOR *)(base + ntHeader->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_IMPORT].VirtualAddress);
-
-	for (; importTable->Characteristics; ++importTable)
-	{
-		const char	* dllName = (const char *)(base + importTable->Name);
-		if (!_stricmp(dllName, searchDllName))
-		{
-			IMAGE_THUNK_DATA	* thunkData = (IMAGE_THUNK_DATA *)(base + importTable->OriginalFirstThunk);
-			uintptr_t			* iat = (uintptr_t *)(base + importTable->FirstThunk);
-
-			for (; thunkData->u1.Ordinal; ++thunkData, ++iat)
-			{
-				if (!IMAGE_SNAP_BY_ORDINAL(thunkData->u1.Ordinal))
-				{
-					IMAGE_IMPORT_BY_NAME	* importInfo = (IMAGE_IMPORT_BY_NAME *)(base + thunkData->u1.AddressOfData);
-
-					if (!_stricmp((char *)importInfo->Name, searchImportName))
-					{
-						return iat;
-					}
-				}
-			}
-			return NULL;
-		}
-	}
-
-	return NULL;
-}*/

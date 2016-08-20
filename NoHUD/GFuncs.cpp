@@ -5,7 +5,7 @@
 void ShowHudSTEAM(bool flag){
 
 #if EXP
-	byte* hudPtr = (byte*)(VAManager::baseAddr + 0x01595128);
+	byte* hudPtr = (byte*)(VAManager::baseAddr + 0x0);
 #else
 	byte* hudPtr = (byte*)(VAManager::baseAddr + 0x01594128);
 #endif
@@ -21,7 +21,7 @@ void ShowHudSTEAM(bool flag){
 void ShowHudGOG(bool flag){
 	//byte* hudPtr
 	//do stuff
-	byte* hudPtr = (byte*)(VAManager::baseAddr + 0x015B7168);
+	byte* hudPtr = (byte*)(VAManager::baseAddr + 0x01594168);
 	if (flag){
 		*hudPtr = 0;
 	}

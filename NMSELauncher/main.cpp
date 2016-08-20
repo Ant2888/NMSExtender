@@ -6,7 +6,6 @@
 #define DEBUG 0
 //275850 -- game id
 int main(int argc, char* argv) {
-	// CURRENTLY ONLY WORKS WITH STEAM (NOT GOG) -- should be an easy change to make it work
 	const char* dllName = "NMSE Core.dll";
 	std::string prgmName = "NMS.exe";
 	std::string curPath = RunTimePath();
@@ -25,7 +24,7 @@ int main(int argc, char* argv) {
 		steam = false;
 		std::cout << "Using GOG Version\n";
 	}
-	std::cout << "Staring NMS\n";
+	std::cout << "Starting NMS\n";
 
 	std::string exe = curPath + "\\" + prgmName;
 
@@ -66,6 +65,7 @@ int main(int argc, char* argv) {
 	}
 
 	std::cout << "\nProgram Injected Everything Succesfully!\n";
+	std::cout << "Please wait for this to close before worrying :)\n";
 	CloseHandle(nmsProc.hProcess);
 	CloseHandle(nmsProc.hThread);
 	Sleep(10000);

@@ -1,14 +1,17 @@
 #pragma once
 #include <stdio.h>
+#include <string>
+#include <fstream>
 
 class FFileStream{
 
 	public:
-		FFileStream();
+		FFileStream(const char* path, bool append);
 		~FFileStream();
-		// For the file just pass the file name. It will all go into NMSE\Dump\<file>
-		FILE* Open(const char* file);
-
+		bool WriteToFile(std::string);
+		void ClearFile();
 	private:
-
+		std::ofstream m_file;
 };
+
+static bool WriteToFile(std::ofstream&, std::string);

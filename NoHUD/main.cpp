@@ -1,21 +1,15 @@
-#pragma once
 #include "NMSE_Core_1_0\ModAPI.h"
+#include "NMSE_Libs\Hooking.h"
 #include "GFuncs.h"
-#include <stdio.h>
-#include <tchar.h>
-#include <sstream>
-#include <Windows.h>
-#include <io.h>
-#include <fcntl.h>
-#include <iostream>
 #include <sstream>
 #include <string>
-#include <vector>
+#include <fstream>
 
 HMODULE localH;
 HANDLE hMonitor;
 VERSION vers;
 bool flag = true;
+int KEYCHK;
 
 DWORD WINAPI ThreadProc(LPVOID threadParam){
 	//In the future I will create a hook into the games native Key Listener so this hack doesn't need to go on about
@@ -24,9 +18,8 @@ DWORD WINAPI ThreadProc(LPVOID threadParam){
 	SHORT btnKeyState;
 		
 	while (flag){
-		btnKeyState = GetAsyncKeyState(VK_F5);
+		btnKeyState = GetAsyncKeyState(KEYCHK);
 		if (((1 << 16) & btnKeyState) && !keyPressed){
-			std::cout << "KEY PRESSED\n";
 			keyPressed = true;
 			if (vers == GOG){
 				ShowHudGOG(m_shwHud);
@@ -38,7 +31,6 @@ DWORD WINAPI ThreadProc(LPVOID threadParam){
 			Sleep(175);
 		}
 		else if (!((1 << 16) & btnKeyState) && keyPressed){
-			std::cout << "KEY NOT PRESSED\n";
 			keyPressed = false;
 		}
 		Sleep(50);
@@ -55,6 +47,28 @@ extern "C"
 		vers = info.version; // Which game version (GOG or STEAM) this DLL is injected into
 		// Do whatever you want from here on -- send out a thread to do constant monitoring. Only do patches or just start a thread for patching
 		// If this gets help up the rest of the program will fault
+
+		/**
+		std::string filePath(RunTimePath() + "\\NMSE\\KeyBind.txt");
+		std::ifstream file(filePath, std::ios::out); (in nor out work)
+
+		MessageBox(0, filePath.c_str(), "", MB_OK);
+		if (file.is_open()){
+			int val;
+			if (file >> val){
+				KEYCHK = val;
+				file.close();
+			}
+			else{
+				MessageBox(0, "FAILD AT LOAD VAL", "", MB_OK);
+				KEYCHK = VK_F5;
+			}
+		}
+		else{
+			MessageBox(0, "FAILD AT LOAD FILE", "", MB_OK);
+			KEYCHK = VK_F5;
+		}
+		**/
 		hMonitor = CreateThread(0, 0, ThreadProc, 0, 0, 0);
 		return true;
 	}
