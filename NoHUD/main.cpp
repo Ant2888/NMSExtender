@@ -9,7 +9,7 @@ HMODULE localH;
 HANDLE hMonitor;
 VERSION vers;
 bool flag = true;
-int KEYCHK;
+int KEYCHK = VK_F5;
 
 DWORD WINAPI ThreadProc(LPVOID threadParam){
 	//In the future I will create a hook into the games native Key Listener so this hack doesn't need to go on about
