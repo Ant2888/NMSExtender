@@ -2,7 +2,7 @@ Follow this on https://www.reddit.com/r/NoMansSkyMods/comments/4xq9ey/indevelopm
 
 NMSE has gone into beta. With that there are a slew of new features. One of which allows everyone who is pretty familiar with reversing, cheat engine and or finding desired functions in x64 to both use this more efficiently and help me if they would like!
 
-I could use any pointer values of functions that you guys have reversed that you think are of any significance! Such pointers/functions would be: The player enter and exiting the shit, the player entering a warp mode, the game saving, etc etc.
+I could use any pointer values of functions that you guys have reversed that you think are of any significance! Such pointers/functions would be: The player enter and exiting the ship, the player entering a warp mode, the game saving, etc etc.
 
 If anyone would like to contribute what ever you have feel free to just email me graetgandalf@aol.com or whatever means you can contact (reddit etc etc).
 
