@@ -1,9 +1,16 @@
 #include "Hooking.h"
+#include <sys/stat.h>
 
 std::string RunTimePath(void) {
 	char buf[MAX_PATH];
 	GetModuleFileNameA(NULL, buf, MAX_PATH);
 	return std::string(buf).substr(0, std::string(buf).find_last_of("\\/"));
+}
+
+
+bool CheckFile(std::string fullPath){
+	struct stat buffer;
+	return (stat(std::string(fullPath).c_str(), &buffer) == 0);
 }
 
 static bool DoInjectDLLThread(PROCESS_INFORMATION * info, const char * dllPath, bool sync, bool noTimeout) {
@@ -23,7 +30,7 @@ static bool DoInjectDLLThread(PROCESS_INFORMATION * info, const char * dllPath, 
 					switch (WaitForSingleObject(thread, noTimeout ? INFINITE : 1000 * 60))	// timeout = one minute
 					{
 					case WAIT_OBJECT_0:
-						std::cout << "Hook Sucessfull!\n";
+						std::cout << "Hook Sucessfull...\n";
 						result = true;
 						break;
 					case WAIT_ABANDONED:

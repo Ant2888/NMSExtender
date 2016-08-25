@@ -1,7 +1,7 @@
 #pragma once
 #include <stdint.h>
-#include <Windows.h>
 
+void VirtualSet(uintptr_t addr, int val, size_t length);
 void VirtualWrite(uintptr_t addr, void* data, size_t buffer);
 void VirtualWrite8(uintptr_t addr, uint8_t data);
 void VirtualWrite16(uintptr_t addr, uint16_t data);

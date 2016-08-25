@@ -1,6 +1,6 @@
-#include <Windows.h>
-#include <iostream>
 #include "AddonManager.h"
+#include "TestHooks.h"
+#include "NMSE_Libs\MemoryManager.h"
 
 HANDLE modHandle;
 static bool isRun = false;
@@ -8,6 +8,20 @@ static bool isRun = false;
 void OnAttach(){
 	if (isRun) return;
 	isRun = true;
+
+	//aloc mem
+
+	if (!global_Memory.CreateMemory(1024 * 48)){
+		MessageBox(0, "Global Mem Failed To Alloc", "NMSE", MB_OK | MB_ICONWARNING);
+		return;
+	}
+
+	if (!local_Memory.CreateMemory(1024 * 48, modHandle)){
+		MessageBox(0, "Local Mem Failed To Alloc", "NMSE", MB_OK| MB_ICONWARNING);
+		return;
+	}
+
+	RunHook();
 	modManager.Init();
 	FlushInstructionCache(GetCurrentProcess(), NULL, 0);
 }

@@ -1,5 +1,4 @@
 #pragma once
-#include <Windows.h>
 
 //Credit to guys at SE
 
@@ -60,6 +59,10 @@ class VAddr{
 
 		uintptr_t GetUIntPtr() const{
 			return reinterpret_cast <uintptr_t>(m_rva);
+		}
+
+		void SetAddr(uintptr_t rva){
+			m_rva = (reinterpret_cast<BlockConversionType*>(rva));
 		}
 
 	private:

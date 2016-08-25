@@ -10,6 +10,7 @@ HANDLE hMonitor;
 VERSION vers;
 bool flag = true;
 int KEYCHK = VK_F5;
+uintptr_t hudStuff;
 
 DWORD WINAPI ThreadProc(LPVOID threadParam){
 	//In the future I will create a hook into the games native Key Listener so this hack doesn't need to go on about
@@ -21,12 +22,7 @@ DWORD WINAPI ThreadProc(LPVOID threadParam){
 		btnKeyState = GetAsyncKeyState(KEYCHK);
 		if (((1 << 16) & btnKeyState) && !keyPressed){
 			keyPressed = true;
-			if (vers == GOG){
-				ShowHudGOG(m_shwHud);
-			}
-			else{
-				ShowHudSTEAM(m_shwHud);
-			}
+			ShowHud(m_shwHud, (byte*)hudStuff);
 			m_shwHud = !m_shwHud;
 			Sleep(175);
 		}
@@ -50,25 +46,24 @@ extern "C"
 
 		/**
 		std::string filePath(RunTimePath() + "\\NMSE\\KeyBind.txt");
-		std::ifstream file(filePath, std::ios::out); (in nor out work)
-
-		MessageBox(0, filePath.c_str(), "", MB_OK);
+		std::ifstream file(filePath, std::ios::in);
 		if (file.is_open()){
-			int val;
-			if (file >> val){
-				KEYCHK = val;
-				file.close();
-			}
-			else{
-				MessageBox(0, "FAILD AT LOAD VAL", "", MB_OK);
-				KEYCHK = VK_F5;
-			}
+		int val;
+		if (file >> val){
+		KEYCHK = val;
+		file.close();
 		}
 		else{
-			MessageBox(0, "FAILD AT LOAD FILE", "", MB_OK);
-			KEYCHK = VK_F5;
+		MessageBox(0, "FAILD AT LOAD VAL", "", MB_OK);
+		KEYCHK = VK_F5;
+		}
+		}
+		else{
+		MessageBox(0, "FAILD AT LOAD FILE", "", MB_OK);
+		KEYCHK = VK_F5;
 		}
 		**/
+		hudStuff = findHUD();
 		hMonitor = CreateThread(0, 0, ThreadProc, 0, 0, 0);
 		return true;
 	}

@@ -69,11 +69,3 @@ void LaunchSteam() {
 		std::cout << "Steam sucesfully started!\n";
 	}
 }
-
-//You can give and Runtime as long as it is the full path
-bool SteamVersion(std::string runtimeDir){
-	if (runtimeDir.find("GOG") != std::string::npos){
-		return false;
-	}
-	return true;
-}

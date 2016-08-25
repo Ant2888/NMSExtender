@@ -88,6 +88,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NMSE_EXPORTS;RUNTIME;RUNTIME_VERSION=0x010700C0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <ForcedIncludeFiles>NMSE_Libs/DefStuff.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <ModuleDefinitionFile>exports.def</ModuleDefinitionFile>
@@ -98,7 +99,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AddonManager.cpp" />
+    <ClCompile Include="ApplyFuncEvents.cpp" />
     <ClCompile Include="Core.cpp" />
+    <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="TestHooks.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NMSE_Libs\NMSE_Libs.vcxproj">
@@ -110,7 +114,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddonManager.h" />
+    <ClInclude Include="ApplyFuncEvents.h" />
+    <ClInclude Include="EventManager.h" />
     <ClInclude Include="ModAPI.h" />
+    <ClInclude Include="TestHooks.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

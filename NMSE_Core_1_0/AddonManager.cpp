@@ -2,6 +2,8 @@
 #include "NMSE_Libs\Hooking.h"
 #include "NMSE_Libs\ModIterator.h"
 #include "NMSE_Libs\Steam.h"
+#include "NMSE_Core_1_0\EventManager.h"
+#include "NMSE_Core_1_0\ApplyFuncEvents.h"
 
 AddonManager modManager;
 
@@ -12,7 +14,7 @@ AddonManager::~AddonManager(){
 }
 
 VERSION AddonManager::GetNMSVersion(){
-	if (SteamVersion(RunTimePath())){
+	if (CheckFile(RunTimePath() + "\\steam_api64.dll")){
 		return STEAM;
 	}
 	else{
@@ -35,6 +37,12 @@ void AddonManager::Init(){
 	LoadMods();
 }
 
+
+void RegisterEvent(void(*paramFunc)()){
+	global_EventManager.RegisterForApplyEvents(paramFunc);
+}
+
+
 void AddonManager::LoadMods(void){
 	m_mods.reserve(7);
 
@@ -49,12 +57,16 @@ void AddonManager::LoadMods(void){
 			mod.startUp = (_OnStart)GetProcAddress(mod.mHandle, "OnStart");
 			if (mod.startUp){
 				if (!CallStart(mod)){
-					std::string err();
-					MessageBox(0, "Mod Failed To Load!", mIter.GetFullPath().c_str(), MB_ICONWARNING | MB_OK);
+					MessageBox(0, "Mod Failed to Start... Unloading It", mIter.GetFullPath().c_str(), MB_ICONWARNING | MB_OK);
+					FreeLibrary(mod.mHandle);
 				}
 				else{
 					loaded = true;
 				}
+			}
+			else{
+				MessageBox(0, "Extern OnStart Not Found...\nLoading Failed!!!", mIter.GetFullPath().c_str(), MB_ICONWARNING | MB_OK);
+				FreeLibrary(mod.mHandle);
 			}
 
 		}
@@ -63,6 +75,10 @@ void AddonManager::LoadMods(void){
 			MessageBox(0, "The mod isn't a valid NMSE dll", err.c_str(), MB_ICONWARNING | MB_OK);
 		}
 		if (loaded){
+			_RegisterForApplyEvents reg = (_RegisterForApplyEvents)GetProcAddress(mod.mHandle, "RegisterForApplyEvent");
+			if (reg){
+				reg(RegisterEvent);
+			}
 			m_mods.push_back(mod);
 		}
 		else{
@@ -83,3 +99,6 @@ bool AddonManager::CallStart(MOD& mod){
 	}
 	return false;
 }
+
+
+

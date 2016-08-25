@@ -1,0 +1,4 @@
+LIBRARY "DEBUGGING"
+EXPORTS
+OnStart
+RegisterForApplyEvent

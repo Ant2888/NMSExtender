@@ -86,12 +86,15 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <ForcedIncludeFiles>NMSE_Libs/DefStuff.h</ForcedIncludeFiles>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DefStuff.h" />
     <ClInclude Include="FFileStream.h" />
     <ClInclude Include="GlobalLogger.h" />
     <ClInclude Include="Hooking.h" />
+    <ClInclude Include="MemoryManager.h" />
     <ClInclude Include="ModIterator.h" />
     <ClInclude Include="Steam.h" />
     <ClInclude Include="VersionControl.h" />
@@ -99,9 +102,11 @@
     <ClInclude Include="VirtualWrite.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DefStuff.cpp" />
     <ClCompile Include="FFileStream.cpp" />
     <ClCompile Include="GlobalLogger.cpp" />
     <ClCompile Include="Hooking.cpp" />
+    <ClCompile Include="MemoryManager.cpp" />
     <ClCompile Include="ModIterator.cpp" />
     <ClCompile Include="Steam.cpp" />
     <ClCompile Include="VersionControl.cpp" />

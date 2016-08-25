@@ -1,6 +1,5 @@
 #pragma once
 #include "ModIterator.h"
-#include <string>
 
 ModIterator::ModIterator(const char * path, const char * match)
 	:m_searchHandle(INVALID_HANDLE_VALUE), m_done(false)

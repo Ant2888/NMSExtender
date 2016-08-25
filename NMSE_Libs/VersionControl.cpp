@@ -48,7 +48,6 @@ bool ValidateVersion(std::string exe){
 	}
 
 	UINT64 vers = versStruc.dwFileDateMS;
-	std::cout << "VERSION: " << vers << std::endl;
 	return true;
 };
 

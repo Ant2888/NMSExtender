@@ -1,0 +1,20 @@
+[Alpha]
+	1.0.0  - Release version
+	1.0.1  - Fixed some hooks with NMS for steam
+	1.0.2  - Added GOG support
+	1.0.3  - Fixed some version issues
+	1.0.4  - NoHUD added
+	1.1.0  - Fixed some incorrect startups and crashing issues
+	*1.2.0 - Added a version control system and a bare bones logging system
+	1.2.1  - Used a different method for determining version (as std wasn't working across OS versions)
+	1.2.2  - Updated versions of NoHUD and added some more logging stuff
+
+[Beta]
+	1.0.0: - Added A Memory Manager to allocate dynamic memory to support relative jumps
+	       - Added the ability to search via Pattern
+	       - Added XBYAK to the project
+	       - Added the ability to register for call functions (currently only ApplyFunction is present)
+	       - Made NoHUD update proof
+	       - Added a debug file for anyone who wishes to see tests of the latest stuff
+	       - Added a Patcher to JMP anywhere. Tied in with a bridge and if properly used with Xbyak allows for any type of hooks.
+	

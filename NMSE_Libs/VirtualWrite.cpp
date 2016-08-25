@@ -1,5 +1,11 @@
 #include "VirtualWrite.h"
-#include <Windows.h>
+
+void VirtualSet(uintptr_t addr, int val, size_t length){
+	unsigned long oldProtect;
+	VirtualProtect((void*)addr, length, PAGE_EXECUTE_READWRITE, &oldProtect);
+	memset((void*)addr, val, length);
+	VirtualProtect((void*)addr, length, oldProtect, &oldProtect);
+}
 
 void VirtualWrite(uintptr_t addr, void* data, size_t buffer) {
 	unsigned long oldProtect;

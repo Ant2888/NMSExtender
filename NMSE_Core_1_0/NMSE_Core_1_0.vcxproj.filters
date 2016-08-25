@@ -5,6 +5,15 @@
     <ClCompile Include="AddonManager.cpp">
       <Filter>API</Filter>
     </ClCompile>
+    <ClCompile Include="TestHooks.cpp">
+      <Filter>game hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplyFuncEvents.cpp">
+      <Filter>listeners</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>listeners</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="exports.def" />
@@ -13,6 +22,12 @@
     <Filter Include="API">
       <UniqueIdentifier>{ff94ccb8-8b74-4de0-8b9d-dc34d7a0e27c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="game hooks">
+      <UniqueIdentifier>{b2874e17-ab04-4cc3-b188-78456f27b9c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="listeners">
+      <UniqueIdentifier>{f8c7bc15-520b-4696-8ef1-33137fc62011}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddonManager.h">
@@ -20,6 +35,15 @@
     </ClInclude>
     <ClInclude Include="ModAPI.h">
       <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="TestHooks.h">
+      <Filter>game hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplyFuncEvents.h">
+      <Filter>listeners</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>listeners</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

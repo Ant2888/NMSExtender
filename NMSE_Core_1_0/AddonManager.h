@@ -26,6 +26,8 @@ private:
 	ModList m_mods;
 
 	MOD *curMod;
+
+	//void applyStuff(void(*paramFunc)());
 };
 
 extern AddonManager modManager;

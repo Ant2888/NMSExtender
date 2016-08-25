@@ -12,7 +12,7 @@ int main(int argc, char* argv) {
 
 	std::cout << "Using runtime: " << curPath << "\n";
 	bool steam;
-	if (SteamVersion(curPath)){
+	if (CheckFile(curPath+"\\steam_api64.dll")){
 		steam = true;
 		std::cout << "Using Steam Version\n";
 		if (!CheckSteam()) {
@@ -24,7 +24,9 @@ int main(int argc, char* argv) {
 		steam = false;
 		std::cout << "Using GOG Version\n";
 	}
-	std::cout << "Starting NMS\n";
+
+
+	std::cout << "Booting NMS...\n";
 
 	std::string exe = curPath + "\\" + prgmName;
 
@@ -50,7 +52,7 @@ int main(int argc, char* argv) {
 	std::cout << "HOOK BASE: " << std::hex << GetModuleHandle(NULL) << std::endl;
 	MessageBox(0, "APP SUSPENDED, HOOK AND PRESS OK", "CUSTOM NMSE", MB_OK | MB_ICONWARNING);
 #endif
-	//inject the dll via the steam dll
+	//inject the dll
 	std::string NMSEsteam = curPath + "\\NMSE_steam.dll";
 	bool isInjected = InjectDLLThread(&nmsProc, NMSEsteam.c_str(), true, false);
 	if (isInjected) {

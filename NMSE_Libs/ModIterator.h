@@ -1,6 +1,4 @@
 #pragma once
-#include <string>
-#include <Windows.h>
 
 /*
 *	File was pretty much just taken from SE. It's just an iterator to search through all the DLL's inside the modDir

@@ -1,8 +1,8 @@
 #pragma once
 #include "NMSE_Libs\VirtualAddress.h"
+#include "NMSE_Libs\MemoryManager.h"
 #include <stdio.h>
 #include <iostream>
 
-void ShowHudSTEAM(bool);
-void Apply();
-void ShowHudGOG(bool);
+void ShowHud(bool, byte*);
+uintptr_t findHUD();
