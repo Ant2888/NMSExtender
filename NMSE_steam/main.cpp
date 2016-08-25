@@ -27,8 +27,5 @@ static void HookMain(void* retAddr) {
 	hooked = true;
 	std::string path = RunTimePath();
 	std::string dll(path + "\\NMSE_Core_1_0.dll");
-	if (CheckFile(RunTimePath() + "\\opengl32.dll")){
-		LoadLibrary(std::string(RunTimePath() + "\\opengl32.dll").c_str());
-	}
 	LoadLibrary(dll.c_str());
 }

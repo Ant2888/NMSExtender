@@ -66,6 +66,7 @@ int main(int argc, char* argv) {
 		std::cout << "Thread resume failed.\n";
 	}
 
+	
 	std::cout << "\nProgram Injected Everything Succesfully!\n";
 	std::cout << "Please wait for this to close before worrying :)\n";
 	CloseHandle(nmsProc.hProcess);

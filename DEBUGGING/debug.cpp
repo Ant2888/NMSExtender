@@ -13,36 +13,23 @@ bool consActive = false;
 DWORD WINAPI WndThread(LPVOID lpThreadParameter); // thread method
 
 void ApplyFunctionUsed(){
-	std::cout << "TEST\n";
+	//std::cout << "TEST\n";
 }
 
 DWORD WINAPI ThreadProc(LPVOID threadParam){
 	_wndThread = CreateThread(0, 0, WndThread, 0, 0, 0);
 
 	while (!consActive) Sleep(1200);
-	//while (consActive) Sleep(1000);
-	uintptr_t offset = 0;
-	uintptr_t funcAddr
-		= MemoryManager::FindPattern("\x90\x48\xBB\xB3\x01\x00\x00\x00\x01\x00\x00\x49\xBC\x25\x23\x22\x84\xE4\x9C\xF2\xCB"
-		, "xxxxxxxxxxxxxxxxxxxxx", 0x200000) + 0x15 + 0x2;
-	//patternMatchaddr + length till instr + opcodes
-	uint8_t ripAddr[4];
-	uint8_t* funcAddr8 = (uint8_t*)funcAddr;
-	ripAddr[0] = *funcAddr8;
-	ripAddr[1] = *(funcAddr8 + 1);
-	ripAddr[2] = *(funcAddr8 + 2);
-	ripAddr[3] = *(funcAddr8 + 3);
+	uint32_t rdx[2];
+	int r8;
+	uint32_t r9[2];
 
-	for (int i = 3; i >= 0; i--){
-		offset = (offset << 8) + ripAddr[i];
-	}
+	//typedef void(*_RechargeFunc)(uint64_t* gameStruct, uint64_t rdxVal, int r8Val, uint64_t r9Val);
+	//VAddr<_RechargeFunc> RechargeFunc(0x043C4D0);
+	uint64_t* rcx = (uint64_t*)(VAManager::baseAddr + 0x1616728);
+	rcx += 0x350;
 
-	//add the offset plus instr count - opcodes we got rid of earlier
-	funcAddr += offset + 0x7 - 0x2;
-	//seems to be 4 away
-
-	std::cout << "OFF: " << std::hex << offset;
-	std::cout << "VAL: " << std::hex << funcAddr;
+	std::cout << "RCXADDR:" << std::hex << rcx;
 	
 	CloseHandle(hMonitor);
 	return 0;
@@ -57,7 +44,7 @@ extern "C"
 		info.name = "TESTING PATCHER";
 		vers = info.version; // Which game version (GOG or STEAM) this DLL is injected into
 		// Do whatever you want from here on -- send out a thread to do constant monitoring. Only do patches or just start a thread for patching
-		// If this gets helded up the rest of the program will fault
+		// If this gets held up the rest of the program will fault
 		hMonitor = CreateThread(0, 0, ThreadProc, 0, 0, 0);
 		return true;
 	}

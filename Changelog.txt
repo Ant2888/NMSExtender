@@ -17,4 +17,6 @@
 	       - Made NoHUD update proof
 	       - Added a debug file for anyone who wishes to see tests of the latest stuff
 	       - Added a Patcher to JMP anywhere. Tied in with a bridge and if properly used with Xbyak allows for any type of hooks.
+
+	1.0.1: - Fixed shaders issue
 	

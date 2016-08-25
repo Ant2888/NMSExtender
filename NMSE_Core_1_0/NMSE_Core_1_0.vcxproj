@@ -102,6 +102,7 @@
     <ClCompile Include="ApplyFuncEvents.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="Save_Load_Hooks.cpp" />
     <ClCompile Include="TestHooks.cpp" />
   </ItemGroup>
   <ItemGroup>

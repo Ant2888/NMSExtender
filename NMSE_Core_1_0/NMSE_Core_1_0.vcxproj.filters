@@ -14,6 +14,9 @@
     <ClCompile Include="EventManager.cpp">
       <Filter>listeners</Filter>
     </ClCompile>
+    <ClCompile Include="Save_Load_Hooks.cpp">
+      <Filter>game hooks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="exports.def" />

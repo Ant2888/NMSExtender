@@ -23,7 +23,11 @@ void OnAttach(){
 
 	RunHook();
 	modManager.Init();
+	if (CheckFile(RunTimePath() + "\\opengl32.dll")){
+		LoadLibrary(std::string(RunTimePath() + "\\opengl32.dll").c_str());
+	}
 	FlushInstructionCache(GetCurrentProcess(), NULL, 0);
+
 }
 
 extern "C" {
