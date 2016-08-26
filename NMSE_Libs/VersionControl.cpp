@@ -41,7 +41,6 @@ static bool GetVersionStruc(std::string exe, tagVS_FIXEDFILEINFO* versStruc){
 
 bool ValidateVersion(std::string exe){
 	tagVS_FIXEDFILEINFO versStruc;
-	DWORD64* versNum;
 
 	if (!GetVersionStruc(exe, &versStruc)){
 		return false;

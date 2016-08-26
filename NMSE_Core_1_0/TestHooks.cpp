@@ -12,7 +12,7 @@ void ApplyChanges_Hook(char** unk1, int64_t unk2){
 	ApplyFunc_Original(unk1, unk2);
 }
 
-void RunHook(){
+void TestHook(){
 
 	struct ApplyHook : Xbyak::CodeGenerator{
 		ApplyHook(void* buffer) : Xbyak::CodeGenerator(4096, buffer){

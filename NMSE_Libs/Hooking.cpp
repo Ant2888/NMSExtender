@@ -7,7 +7,6 @@ std::string RunTimePath(void) {
 	return std::string(buf).substr(0, std::string(buf).find_last_of("\\/"));
 }
 
-
 bool CheckFile(std::string fullPath){
 	struct stat buffer;
 	return (stat(std::string(fullPath).c_str(), &buffer) == 0);
@@ -64,4 +63,37 @@ bool InjectDLLThread(PROCESS_INFORMATION * info, const char * dllPath, bool sync
 		result = false;
 	}
 	return result;
+}
+
+void** GetImportFunctionAddress(const char* DLL, const char* function, HMODULE mod){
+	if (!mod) mod = GetModuleHandle(NULL);
+	//setup to read dos file structures
+	PIMAGE_DOS_HEADER pHead = (PIMAGE_DOS_HEADER)mod;
+	PIMAGE_NT_HEADERS pNT = (PIMAGE_NT_HEADERS)((LPBYTE)pHead + pHead->e_lfanew);
+	PIMAGE_IMPORT_DESCRIPTOR pDesc = (PIMAGE_IMPORT_DESCRIPTOR)((LPBYTE)pHead 
+		+ pNT->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_IMPORT].VirtualAddress);
+
+	//don't really need to check the sig 
+	while (pDesc->Characteristics){
+		if (!_stricmp(DLL, (char*)(mod + pDesc->FirstThunk))){
+
+			PIMAGE_THUNK_DATA tData = (PIMAGE_THUNK_DATA)(pHead + pDesc->OriginalFirstThunk);
+			uintptr_t* table = (uintptr_t*)(pHead + pDesc->FirstThunk);
+
+			while (tData->u1.Ordinal){
+
+				if (!IMAGE_SNAP_BY_ORDINAL(tData->u1.Ordinal)){
+					PIMAGE_IMPORT_BY_NAME info = (PIMAGE_IMPORT_BY_NAME)(pHead + tData->u1.AddressOfData);
+					if (!_stricmp(function, (char*)(info->Name))){
+						return (void**)table;
+					}
+				}
+				++tData;
+				++table;
+			}
+			return NULL; //function wasn't found in this DLL
+		}
+		++pDesc;
+	}
+	return NULL;
 }

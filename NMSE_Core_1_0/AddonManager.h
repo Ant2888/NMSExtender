@@ -1,6 +1,12 @@
 #pragma once	
+#include "NMSE_Libs\Hooking.h"
+#include "NMSE_Libs\ModIterator.h"
+#include "NMSE_Libs\Steam.h"
+#include "EventManager.h"
 #include "ModAPI.h"
+#include "RegisterCallbacks.h"
 #include <vector>
+
 
 
 class AddonManager{
@@ -27,7 +33,6 @@ private:
 
 	MOD *curMod;
 
-	//void applyStuff(void(*paramFunc)());
 };
 
 extern AddonManager modManager;

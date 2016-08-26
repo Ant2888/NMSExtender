@@ -14,8 +14,8 @@
     <ClCompile Include="EventManager.cpp">
       <Filter>listeners</Filter>
     </ClCompile>
-    <ClCompile Include="Save_Load_Hooks.cpp">
-      <Filter>game hooks</Filter>
+    <ClCompile Include="RegisterCallbacks.cpp">
+      <Filter>API</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -47,6 +47,9 @@
     </ClInclude>
     <ClInclude Include="EventManager.h">
       <Filter>listeners</Filter>
+    </ClInclude>
+    <ClInclude Include="RegisterCallbacks.h">
+      <Filter>API</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

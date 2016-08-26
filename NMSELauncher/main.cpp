@@ -71,6 +71,6 @@ int main(int argc, char* argv) {
 	std::cout << "Please wait for this to close before worrying :)\n";
 	CloseHandle(nmsProc.hProcess);
 	CloseHandle(nmsProc.hThread);
-	Sleep(10000);
+	Sleep(25000);
 	return 0;
 }

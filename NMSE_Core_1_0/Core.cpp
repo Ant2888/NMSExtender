@@ -1,9 +1,12 @@
 #include "AddonManager.h"
 #include "TestHooks.h"
 #include "NMSE_Libs\MemoryManager.h"
+#include "EventManager.h"
 
 HANDLE modHandle;
+HHOOK hkeyHook;
 static bool isRun = false;
+
 
 void OnAttach(){
 	if (isRun) return;
@@ -21,9 +24,15 @@ void OnAttach(){
 		return;
 	}
 
-	RunHook();
+
+	TestHook();
 	modManager.Init();
-	if (CheckFile(RunTimePath() + "\\opengl32.dll")){
+
+	
+	std::string rtp(RunTimePath()); //save some func calls
+	if (CheckFile(rtp + "\\opengl32.dll") || CheckFile(rtp + "\\Opengl32.dll") || CheckFile(rtp + "\\OPENGL32.dll")
+		|| CheckFile(rtp + "\\OpenGL32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
+		//so this hack will have to do
 		LoadLibrary(std::string(RunTimePath() + "\\opengl32.dll").c_str());
 	}
 	FlushInstructionCache(GetCurrentProcess(), NULL, 0);

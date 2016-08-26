@@ -12,3 +12,6 @@ std::string RunTimePath(void);
 
 //Returns whether the files at fullPath exists
 bool CheckFile(std::string fullPath);
+
+//Grabs the address of the function imported into mod from DLL
+void** GetImportFunctionAddress(const char* DLL, const char* function, HMODULE mod);

@@ -1,9 +1,4 @@
 #include "AddonManager.h"
-#include "NMSE_Libs\Hooking.h"
-#include "NMSE_Libs\ModIterator.h"
-#include "NMSE_Libs\Steam.h"
-#include "NMSE_Core_1_0\EventManager.h"
-#include "NMSE_Core_1_0\ApplyFuncEvents.h"
 
 AddonManager modManager;
 
@@ -38,9 +33,7 @@ void AddonManager::Init(){
 }
 
 
-void RegisterEvent(void(*paramFunc)()){
-	global_EventManager.RegisterForApplyEvents(paramFunc);
-}
+
 
 
 void AddonManager::LoadMods(void){
@@ -75,10 +68,7 @@ void AddonManager::LoadMods(void){
 			MessageBox(0, "The mod isn't a valid NMSE dll", err.c_str(), MB_ICONWARNING | MB_OK);
 		}
 		if (loaded){
-			_RegisterForApplyEvents reg = (_RegisterForApplyEvents)GetProcAddress(mod.mHandle, "RegisterForApplyEvent");
-			if (reg){
-				reg(RegisterEvent);
-			}
+			RegisterModForEvents(mod.mHandle);
 			m_mods.push_back(mod);
 		}
 		else{
