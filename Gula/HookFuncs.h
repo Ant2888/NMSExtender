@@ -4,5 +4,5 @@
 #include <stdio.h>
 #include <iostream>
 
-void ChangeStack(bool, byte*);
+void WriteHook(HANDLE);
 uintptr_t findStack();

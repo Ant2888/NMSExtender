@@ -8,19 +8,13 @@
 HMODULE localH;
 HANDLE hMonitor;
 VERSION vers;
-uintptr_t stackConstant;
+uintptr_t stack_ptr;
 
 const int MAX_AMOUNT = 500;
 
 DWORD WINAPI ThreadProc(LPVOID threadParam){
-	//VirtualSet(stackConstant + 0, 0xF4, sizeof(byte));
-	//VirtualSet(stackConstant + 1, 0x01, sizeof(byte));
-
-	//Constant Location
-	VirtualWrite(stackConstant + 3, (void*)&MAX_AMOUNT, sizeof(int));
-
-	VirtualSet(stackConstant - 2, 0x90, sizeof(byte));
-	VirtualSet(stackConstant - 1, 0x90, sizeof(byte));
+	Sleep(10000); //For running debug attach
+	WriteHook(hMonitor);
 
 	CloseHandle(hMonitor);
 	return 0;
@@ -33,11 +27,6 @@ extern "C"
 		localH = mHandle;
 		info.name = "Gula";
 		vers = info.version; 
-
-		stackConstant = findStack();
-		if (stackConstant == NULL) {
-			return false;
-		}
 
 		hMonitor = CreateThread(0, 0, ThreadProc, 0, 0, 0);
 		return true;
