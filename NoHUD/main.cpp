@@ -18,6 +18,8 @@ DWORD WINAPI ThreadProc(LPVOID threadParam){
 	bool m_shwHud = false;
 	SHORT btnKeyState;
 		
+	hudStuff = findHUD();
+
 	while (flag){
 		btnKeyState = GetAsyncKeyState(KEYCHK);
 		if (((1 << 16) & btnKeyState) && !keyPressed){
@@ -63,7 +65,7 @@ extern "C"
 		KEYCHK = VK_F5;
 		}
 		**/
-		hudStuff = findHUD();
+
 		hMonitor = CreateThread(0, 0, ThreadProc, 0, 0, 0);
 		return true;
 	}
