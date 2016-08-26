@@ -21,6 +21,7 @@ void TestHook(){
 			mov(ptr [rsp+8], rbx);
 
 			jmp(ptr [rip + addrLbl]);
+			
 
 			L(addrLbl);
 			dq(ApplyFunc.GetUIntPtr() + 6);

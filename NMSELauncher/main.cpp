@@ -63,7 +63,7 @@ int main(int argc, char* argv) {
 	}
 
 	if (!ResumeThread(nmsProc.hThread)) {
-		std::cout << "Thread resume failed.\n";
+		std::cout << "Thread resume failed (ERR): " << GetLastError();
 	}
 
 	

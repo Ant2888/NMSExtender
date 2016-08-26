@@ -25,7 +25,7 @@ void OnAttach(){
 	}
 
 
-	TestHook();
+	//TestHook();
 	modManager.Init();
 
 	
