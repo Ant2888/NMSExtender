@@ -1,4 +1,5 @@
 #pragma once	
+#include "NMSE_Libs\MemoryManager.h"	
 #include "NMSE_Libs\Hooking.h"
 #include "NMSE_Libs\ModIterator.h"
 #include "NMSE_Libs\Steam.h"

@@ -19,6 +19,8 @@ BOOL WINAPI DllMain(HANDLE pHandle, DWORD reason, LPVOID res) {
 static void OnAttach(void) {
 	//HookTables();
 	HookMain(0);
+
+	
 }
 
 bool hooked = false;

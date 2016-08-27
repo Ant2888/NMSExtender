@@ -1,5 +1,4 @@
 #include "Hooking.h"
-#include <sys/stat.h>
 
 std::string RunTimePath(void) {
 	char buf[MAX_PATH];

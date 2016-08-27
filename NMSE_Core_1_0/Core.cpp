@@ -27,27 +27,10 @@ void OnAttach(){
 
 	//TestHook();
 	modManager.Init();
-
 	
-	std::string rtp(RunTimePath()); //save some func calls
-	if (CheckFile(rtp + "\\opengl32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
-		//so this hack will have to do
-		LoadLibrary(std::string(RunTimePath() + "\\opengl32.dll").c_str());
-	}
-	else if (CheckFile(rtp + "\\Opengl32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
-		//so this hack will have to do
-		LoadLibrary(std::string(rtp + "\\Opengl32.dll").c_str());
-	}
-	else if (CheckFile(rtp + "\\OPENGL32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
-		//so this hack will have to do
-		LoadLibrary(std::string(rtp + "\\OPENGL32.dll").c_str());
-	}
-	else if (CheckFile(rtp + "\\OpenGL32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
-		//so this hack will have to do
-		LoadLibrary(std::string(rtp + "\\OpenGL32.dll").c_str());
-	}
-	FlushInstructionCache(GetCurrentProcess(), NULL, 0);
+	
 
+	FlushInstructionCache(GetCurrentProcess(), NULL, 0);
 }
 
 extern "C" {
