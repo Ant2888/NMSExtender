@@ -20,7 +20,7 @@ void WriteHook(SizeSettings settings){
 			//So when we're here we are at the beginning of new mem you can replace the code you patched out here
 
 			// At this point, eax contains ENUM stack.type
-			// If eax is 1, then stack type is Equipment, we want to multiply this quantity by charge_mult
+			// If eax is 1, then stack type is Equipment, we don't want to modify its value
 			test(eax, 1);
 			jne(ischargeLbl);
 			// If eax is 0, then stack type is Substance, we want to change this to whatever amount is set in issubLbl
@@ -48,10 +48,15 @@ void WriteHook(SizeSettings settings){
 			jmp(retLbl);
 
 			L(ischargeLbl);
-			// since eax is 1 when equipment, and eax is the multiplier used later on
-			// moving the charge mult into eax is good enough
 			mov(eax, SETTINGS.CHARGE_MULT);
+			//If item is equipment and change is specified, then return directly
+			cmp(eax, 0xFFFFFFFF);
+			jne(retLbl);
 
+			//If item is equipment and no change is specified, then we need to skip the next block after returning
+			mov(eax, 1); 
+			add(dword[rsp], 0x4);
+			
 			L(retLbl);
 			// offset the stack pointer (which points to caller address) by 5
 			add(dword[rsp], 0x5);
