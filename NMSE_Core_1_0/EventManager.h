@@ -1,4 +1,5 @@
 #pragma once
+#include "ApplyFuncEvents.h"
 #include <vector>
 
 //Class isn't really in full use yet

@@ -1,9 +1,12 @@
 #include "AddonManager.h"
 #include "TestHooks.h"
 #include "NMSE_Libs\MemoryManager.h"
+#include "EventManager.h"
 
 HANDLE modHandle;
+HHOOK hkeyHook;
 static bool isRun = false;
+
 
 void OnAttach(){
 	if (isRun) return;
@@ -21,8 +24,12 @@ void OnAttach(){
 		return;
 	}
 
-	RunHook();
+
+	//TestHook();
 	modManager.Init();
+	
+	
+
 	FlushInstructionCache(GetCurrentProcess(), NULL, 0);
 }
 

@@ -48,7 +48,9 @@ void WriteHook(SizeSettings settings){
 			jmp(retLbl);
 
 			L(ischargeLbl);
-			imul(eax, eax, SETTINGS.CHARGE_MULT);
+			// since eax is 1 when equipment, and eax is the multiplier used later on
+			// moving the charge mult into eax is good enough
+			mov(eax, SETTINGS.CHARGE_MULT);
 
 			L(retLbl);
 			// offset the stack pointer (which points to caller address) by 5

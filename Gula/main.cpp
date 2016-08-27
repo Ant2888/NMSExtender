@@ -12,7 +12,7 @@ uintptr_t stack_ptr;
 SizeSettings settings;
 
 DWORD WINAPI ThreadProc(LPVOID threadParam){
-	//Sleep(10000);
+	Sleep(20000);
 
 	WriteHook(settings);
 
@@ -31,12 +31,12 @@ SizeSettings GetSettings() {
 
 extern "C"
 {
-	bool OnStart(HMODULE& mHandle, ModDetails& info, MemoryManager& local, MemoryManager& global){
+	bool OnStart(HMODULE& mHandle, ModDetails& info, Memory& mem){
 		localH = mHandle;
 		info.name = "Gula";
 		vers = info.version; 
-		local_Memory = local;
-		global_Memory = global;
+		local_Memory = mem.local;
+		global_Memory = mem.global;
 
 		settings = GetSettings();
 

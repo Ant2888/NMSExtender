@@ -39,9 +39,7 @@ void AddonManager::Init(){
 }
 
 
-void RegisterEvent(void(*paramFunc)()){
-	global_EventManager.RegisterForApplyEvents(paramFunc);
-}
+
 
 
 void AddonManager::LoadMods(void){
@@ -58,7 +56,8 @@ void AddonManager::LoadMods(void){
 			mod.startUp = (_OnStart)GetProcAddress(mod.mHandle, "OnStart");
 			if (mod.startUp){
 				if (!CallStart(mod)){
-					MessageBox(0, "Mod Failed to Start... Unloading It", mIter.GetFullPath().c_str(), MB_ICONWARNING | MB_OK);
+					std::string failMessage = "Mod: [" + mod.modDetails.name + "] Failed to Start... Unloading It";
+					MessageBox(0, failMessage.c_str(), mIter.GetFullPath().c_str(), MB_ICONWARNING | MB_OK);
 					FreeLibrary(mod.mHandle);
 				}
 				else{
@@ -76,10 +75,7 @@ void AddonManager::LoadMods(void){
 			MessageBox(0, "The mod isn't a valid NMSE dll", err.c_str(), MB_ICONWARNING | MB_OK);
 		}
 		if (loaded){
-			_RegisterForApplyEvents reg = (_RegisterForApplyEvents)GetProcAddress(mod.mHandle, "RegisterForApplyEvent");
-			if (reg){
-				reg(RegisterEvent);
-			}
+			RegisterModForEvents(mod.mHandle);
 			m_mods.push_back(mod);
 		}
 		else{
@@ -92,7 +88,8 @@ void AddonManager::LoadMods(void){
 bool AddonManager::CallStart(MOD& mod){
 	__try{
 		mod.modDetails.version = GetNMSVersion();
-		if (!mod.startUp(mod.mHandle, mod.modDetails, local_Memory, global_Memory)) return false;
+		Memory mem = { local_Memory, global_Memory };
+		if (!mod.startUp(mod.mHandle, mod.modDetails, mem)) return false;
 		return true;
 	}
 	__except (1){

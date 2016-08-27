@@ -62,14 +62,45 @@ int main(int argc, char* argv) {
 		std::cout << "Loader Injection Failed\n";
 	}
 
+	
+	Sleep(1000);
+	std::cout << "Resuming thread...\n";
 	if (!ResumeThread(nmsProc.hThread)) {
-		std::cout << "Thread resume failed.\n";
+		std::cout << "Thread resume failed (ERR): " << GetLastError() << std::endl;
+	}
+	std::string rtp(RunTimePath()); //save some func calls
+	if (CheckFile(rtp + "\\opengl32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
+		//so this hack will have to do
+		InjectDLLThread(&nmsProc, std::string(RunTimePath() + "\\opengl32.dll").c_str(), true, false);
+	}
+	else if (CheckFile(rtp + "\\Opengl32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
+		//so this hack will have to do
+		InjectDLLThread(&nmsProc, std::string(rtp + "\\Opengl32.dll").c_str(), true, false);
+	}
+	else if (CheckFile(rtp + "\\OPENGL32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
+		//so this hack will have to do
+		InjectDLLThread(&nmsProc, std::string(rtp + "\\OPENGL32.dll").c_str(), true, false);
+	}
+	else if (CheckFile(rtp + "\\OpenGL32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
+		//so this hack will have to do
+		InjectDLLThread(&nmsProc, std::string(rtp + "\\OpenGL32.dll").c_str(), true, false);
 	}
 
+	if (CheckFile(rtp + "\\xinput9_1_0.dll")){
+		InjectDLLThread(&nmsProc, std::string(rtp + "\\xinput9_1_0.dll").c_str(), true, false);
+	}
+	if (CheckFile(rtp + "\\opengl32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
+		//so this hack will have to do
+		std::cout << "YOU HAVE THE OPENGL32 DLL INSTALLED\n";
+	}
+	else{
+		std::cout << "No opengl32.dll Found! \n";
+	}
+	
 	std::cout << "\nProgram Injected Everything Succesfully!\n";
 	std::cout << "Please wait for this to close before worrying :)\n";
 	CloseHandle(nmsProc.hProcess);
 	CloseHandle(nmsProc.hThread);
-	Sleep(10000);
+	Sleep(25000);
 	return 0;
 }

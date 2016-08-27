@@ -86,7 +86,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\..</AdditionalIncludeDirectories>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NMSE_EXPORTS;RUNTIME;RUNTIME_VERSION=0x010700C0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NMSE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <ForcedIncludeFiles>NMSE_Libs/DefStuff.h</ForcedIncludeFiles>
     </ClCompile>
@@ -102,6 +102,7 @@
     <ClCompile Include="ApplyFuncEvents.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="RegisterCallbacks.cpp" />
     <ClCompile Include="TestHooks.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +118,7 @@
     <ClInclude Include="ApplyFuncEvents.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="ModAPI.h" />
+    <ClInclude Include="RegisterCallbacks.h" />
     <ClInclude Include="TestHooks.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
