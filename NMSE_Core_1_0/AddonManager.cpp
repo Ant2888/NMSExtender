@@ -1,4 +1,10 @@
 #include "AddonManager.h"
+#include "NMSE_Libs\Hooking.h"
+#include "NMSE_Libs\ModIterator.h"
+#include "NMSE_Libs\Steam.h"
+#include "NMSE_Core_1_0\EventManager.h"
+#include "NMSE_Core_1_0\ApplyFuncEvents.h"
+#include "NMSE_Libs\MemoryManager.h"
 
 AddonManager modManager;
 
@@ -50,7 +56,8 @@ void AddonManager::LoadMods(void){
 			mod.startUp = (_OnStart)GetProcAddress(mod.mHandle, "OnStart");
 			if (mod.startUp){
 				if (!CallStart(mod)){
-					MessageBox(0, "Mod Failed to Start... Unloading It", mIter.GetFullPath().c_str(), MB_ICONWARNING | MB_OK);
+					std::string failMessage = "Mod: [" + mod.modDetails.name + "] Failed to Start... Unloading It";
+					MessageBox(0, failMessage.c_str(), mIter.GetFullPath().c_str(), MB_ICONWARNING | MB_OK);
 					FreeLibrary(mod.mHandle);
 				}
 				else{
@@ -81,7 +88,8 @@ void AddonManager::LoadMods(void){
 bool AddonManager::CallStart(MOD& mod){
 	__try{
 		mod.modDetails.version = GetNMSVersion();
-		if (!mod.startUp(mod.mHandle, mod.modDetails)) return false;
+		Memory mem = { local_Memory, global_Memory };
+		if (!mod.startUp(mod.mHandle, mod.modDetails, mem)) return false;
 		return true;
 	}
 	__except (1){
