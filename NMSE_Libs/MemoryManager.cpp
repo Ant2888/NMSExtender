@@ -121,32 +121,40 @@ size_t MemoryManager::RemainingSpace(){
 
 
 bool MemoryManager::PatchBranch(uintptr_t src, uintptr_t dst, size_t len){
+	return ExecBranch(src, dst, JMPDF, len);
+};
+
+bool MemoryManager::CallBranch(uintptr_t src, uintptr_t dst, size_t len){
+	return ExecBranch(src, dst, CALLDF, len); 
+}
+
+bool MemoryManager::ExecBranch(uintptr_t src, uintptr_t dst, uint8_t command, size_t len){
 	// need atleast 5 bytes to write the jump
 	if (len < 5 || !m_addr){
 		return false;
 	}
 
-	uintptr_t* rtMem = (uintptr_t*)(AllocateSpace(sizeof(void*))); 
+	uintptr_t* rtMem = (uintptr_t*)(AllocateSpace(sizeof(void*)));
 
 	if (!rtMem) return false;
 
 	//grab the relative jmp
 	uintptr_t rtMemAddr = (uintptr_t)rtMem;
 	uintptr_t nextByte = src + 6;
-	ptrdiff_t ripDiff = rtMemAddr-nextByte;
+	ptrdiff_t ripDiff = rtMemAddr - nextByte;
 
 	//null the bytes (your job to replace at the moment) -- use xbyak
 	//VirtualSet(src, 0x90, len); -- nyi
 
 	uint8_t instr[6];
 	instr[0] = 0xff;
-	instr[1] = JMPDF;
+	instr[1] = command;
 	*((sint32_t*)&instr[2]) = (sint32_t)ripDiff;
 	VirtualWrite(src, instr, sizeof(instr));
 	*rtMem = dst;
 
 	return true;
-};
+}
 
 void* MemoryManager::AllocateSpace(size_t bytes){
 	if (m_addr){

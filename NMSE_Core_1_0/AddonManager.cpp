@@ -4,6 +4,7 @@
 #include "NMSE_Libs\Steam.h"
 #include "NMSE_Core_1_0\EventManager.h"
 #include "NMSE_Core_1_0\ApplyFuncEvents.h"
+#include "NMSE_Libs\MemoryManager.h"
 
 AddonManager modManager;
 
@@ -91,7 +92,7 @@ void AddonManager::LoadMods(void){
 bool AddonManager::CallStart(MOD& mod){
 	__try{
 		mod.modDetails.version = GetNMSVersion();
-		if (!mod.startUp(mod.mHandle, mod.modDetails)) return false;
+		if (!mod.startUp(mod.mHandle, mod.modDetails, local_Memory, global_Memory)) return false;
 		return true;
 	}
 	__except (1){
