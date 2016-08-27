@@ -23,7 +23,7 @@ SizeSettings GetSettings(LPCSTR dir) {
 		(int)GetPrivateProfileInt("SIZE_SETTINGS", "DEFAULT_SUBS_SIZE", 250, dir),
 		(int)GetPrivateProfileInt("SIZE_SETTINGS", "DEFAULT_ITEM_SIZE", 1, dir),
 		(int)GetPrivateProfileInt("SIZE_SETTINGS", "SHIP_MULT", 2, dir),
-		(int)GetPrivateProfileInt("SIZE_SETTINGS", "CHARGE_MULT", -1, dir)
+		(int)GetPrivateProfileInt("SIZE_SETTINGS", "CHARGE_VAL", -1, dir)
 	};
 }
 

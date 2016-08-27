@@ -48,7 +48,7 @@ void WriteHook(SizeSettings settings){
 			jmp(retLbl);
 
 			L(ischargeLbl);
-			mov(eax, SETTINGS.CHARGE_MULT);
+			mov(eax, SETTINGS.CHARGE_VAL);
 			//If item is equipment and change is specified, then return directly
 			cmp(eax, 0xFFFFFFFF);
 			jne(retLbl);
