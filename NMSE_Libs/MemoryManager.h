@@ -91,6 +91,8 @@ class MemoryManager{
 		size_t m_bytesWritten;
 		//The handle for where to start allocation
 		void* m_locAlloc;
+
+		bool ExecBranch(uintptr_t src, uintptr_t dst, uint8_t command, size_t len);
 };
 
 extern MemoryManager global_Memory;

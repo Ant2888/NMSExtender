@@ -5,6 +5,7 @@ MemoryManager local_Memory;
 
 MemoryManager::MemoryManager()
 	: m_addr(nullptr)
+	, m_locAlloc(nullptr)
 	, m_memAllocated(0)
 	, m_bytesWritten(0){
 	//
@@ -122,10 +123,10 @@ size_t MemoryManager::RemainingSpace(){
 
 bool MemoryManager::PatchBranch(uintptr_t src, uintptr_t dst, size_t len){
 	return ExecBranch(src, dst, JMPDF, len);
-};
+}
 
 bool MemoryManager::CallBranch(uintptr_t src, uintptr_t dst, size_t len){
-	return ExecBranch(src, dst, CALLDF, len); 
+	return ExecBranch(src, dst, CALLDF, len);
 }
 
 bool MemoryManager::ExecBranch(uintptr_t src, uintptr_t dst, uint8_t command, size_t len){
@@ -134,7 +135,7 @@ bool MemoryManager::ExecBranch(uintptr_t src, uintptr_t dst, uint8_t command, si
 		return false;
 	}
 
-	uintptr_t* rtMem = (uintptr_t*)(AllocateSpace(sizeof(void*)));
+	uintptr_t* rtMem = (uintptr_t*)(AllocateSpace(sizeof(void*))); 
 
 	if (!rtMem) return false;
 

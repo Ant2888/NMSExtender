@@ -22,7 +22,7 @@ static bool DoInjectDLLThread(PROCESS_INFORMATION * info, const char * dllPath, 
 			// (can change across restarts)
 			uintptr_t LoadLibAdr = (uintptr_t)GetProcAddress(GetModuleHandleA("kernel32.dll"), "LoadLibraryA");
 			WriteProcessMemory(process, (LPVOID)hookBase, dllPath, strlen(dllPath) + 1, NULL);
-			HANDLE thread = CreateRemoteThread(process, NULL, NULL, (LPTHREAD_START_ROUTINE)LoadLibAdr, (LPVOID)hookBase, NULL, NULL);
+			HANDLE thread = CreateRemoteThread(process, NULL, 0, (LPTHREAD_START_ROUTINE)LoadLibAdr, (LPVOID)hookBase, 0, NULL);
 			if (thread) {
 				if (sync) {
 					switch (WaitForSingleObject(thread, noTimeout ? INFINITE : 1000 * 60))	// timeout = one minute

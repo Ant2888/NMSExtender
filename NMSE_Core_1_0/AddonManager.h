@@ -17,7 +17,10 @@ public:
 	void Init();
 	void UnLoad();
 	VERSION GetNMSVersion();
+	void SetMainDLL(HANDLE);
 private:
+	HANDLE m_mainDLL;
+
 	struct MOD{
 		HMODULE mHandle;
 		ModDetails modDetails;

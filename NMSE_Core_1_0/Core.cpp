@@ -26,10 +26,38 @@ void OnAttach(){
 
 
 	//TestHook();
+	modManager.SetMainDLL(modHandle);
 	modManager.Init();
 	
-	
+	Sleep(1000);
+	std::string rtp(RunTimePath()); //save some func calls
+	if (CheckFile(rtp + "\\opengl32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
+		//so this hack will have to do
+		LoadLibrary(std::string(RunTimePath() + "\\opengl32.dll").c_str());
+	}
+	else if (CheckFile(rtp + "\\Opengl32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
+		//so this hack will have to do
+		LoadLibrary(std::string(rtp + "\\Opengl32.dll").c_str());
+	}
+	else if (CheckFile(rtp + "\\OPENGL32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
+		//so this hack will have to do
+		LoadLibrary(std::string(rtp + "\\OPENGL32.dll").c_str());
+	}
+	else if (CheckFile(rtp + "\\OpenGL32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
+		//so this hack will have to do
+		LoadLibrary(std::string(rtp + "\\OpenGL32.dll").c_str());
+	}
 
+	if (CheckFile(rtp + "\\xinput9_1_0.dll")){
+		LoadLibrary(std::string(rtp + "\\xinput9_1_0.dll").c_str());
+	}
+	if (CheckFile(rtp + "\\opengl32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
+		//so this hack will have to do
+		std::cout << "YOU HAVE THE OPENGL32 DLL INSTALLED\n";
+	}
+	else{
+		std::cout << "No opengl32.dll Found! \n";
+	}
 	FlushInstructionCache(GetCurrentProcess(), NULL, 0);
 }
 
