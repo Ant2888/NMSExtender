@@ -30,7 +30,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NoHUD", "NoHUD\NoHUD.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DEBUGGING", "DEBUGGING\DEBUGGING.vcxproj", "{44A05FFC-4FEA-40CC-8CB3-D6FC0813AC81}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gula", "Gula\Gula.vcxproj", "{A2C7EE54-9E94-4833-8E97-DF082950D653}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StackResize", "StackResize\StackResize.vcxproj", "{A2C7EE54-9E94-4833-8E97-DF082950D653}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
