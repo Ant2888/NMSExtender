@@ -231,10 +231,10 @@ void jnc(const char *label, LabelType type = T_AUTO) { jnc(std::string(label), t
 void jnc(const void *addr) { opJmpAbs(addr, T_NEAR, 0x73, 0x83, 0x0F); }
 void setnc(const Operand& op) { opR_ModM(op, 8, 0, 0x0F, 0x90 | 3); }
 void cmove(const Reg& reg, const Operand& op) { opModRM(reg, op, op.isREG(16 | i32e), op.isMEM(), 0x0F, 0x40 | 4); }
-void je(std::string label, LabelType type = T_AUTO) { opJmp(label, type, 0x74, 0x84, 0x0F); }
-void je(const Label& label, LabelType type = T_AUTO) { opJmp(label, type, 0x74, 0x84, 0x0F); }
-void je(const char *label, LabelType type = T_AUTO) { je(std::string(label), type); }
-void je(const void *addr) { opJmpAbs(addr, T_NEAR, 0x74, 0x84, 0x0F); }
+//void je(std::string label, LabelType type = T_AUTO) { opJmp(label, type, 0x74, 0x84, 0x0F); }
+//void je(const Label& label, LabelType type = T_AUTO) { opJmp(label, type, 0x74, 0x84, 0x0F); }
+//void je(const char *label, LabelType type = T_AUTO) { je(std::string(label), type); }
+//void je(const void *addr) { opJmpAbs(addr, T_NEAR, 0x74, 0x84, 0x0F); }
 void sete(const Operand& op) { opR_ModM(op, 8, 0, 0x0F, 0x90 | 4); }
 void cmovz(const Reg& reg, const Operand& op) { opModRM(reg, op, op.isREG(16 | i32e), op.isMEM(), 0x0F, 0x40 | 4); }
 void jz(std::string label, LabelType type = T_AUTO) { opJmp(label, type, 0x74, 0x84, 0x0F); }
@@ -243,10 +243,10 @@ void jz(const char *label, LabelType type = T_AUTO) { jz(std::string(label), typ
 void jz(const void *addr) { opJmpAbs(addr, T_NEAR, 0x74, 0x84, 0x0F); }
 void setz(const Operand& op) { opR_ModM(op, 8, 0, 0x0F, 0x90 | 4); }
 void cmovne(const Reg& reg, const Operand& op) { opModRM(reg, op, op.isREG(16 | i32e), op.isMEM(), 0x0F, 0x40 | 5); }
-void jne(std::string label, LabelType type = T_AUTO) { opJmp(label, type, 0x75, 0x85, 0x0F); }
-void jne(const Label& label, LabelType type = T_AUTO) { opJmp(label, type, 0x75, 0x85, 0x0F); }
-void jne(const char *label, LabelType type = T_AUTO) { jne(std::string(label), type); }
-void jne(const void *addr) { opJmpAbs(addr, T_NEAR, 0x75, 0x85, 0x0F); }
+//void jne(std::string label, LabelType type = T_AUTO) { opJmp(label, type, 0x75, 0x85, 0x0F); }
+//void jne(const Label& label, LabelType type = T_AUTO) { opJmp(label, type, 0x75, 0x85, 0x0F); }
+//void jne(const char *label, LabelType type = T_AUTO) { jne(std::string(label), type); }
+//void jne(const void *addr) { opJmpAbs(addr, T_NEAR, 0x75, 0x85, 0x0F); }
 void setne(const Operand& op) { opR_ModM(op, 8, 0, 0x0F, 0x90 | 5); }
 void cmovnz(const Reg& reg, const Operand& op) { opModRM(reg, op, op.isREG(16 | i32e), op.isMEM(), 0x0F, 0x40 | 5); }
 void jnz(std::string label, LabelType type = T_AUTO) { opJmp(label, type, 0x75, 0x85, 0x0F); }

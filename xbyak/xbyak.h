@@ -2010,23 +2010,23 @@ public:
 	void assignL(Label& dst, const Label& src) { labelMgr_.assign(dst, src); }
 	void inLocalLabel() { labelMgr_.enterLocal(); }
 	void outLocalLabel() { labelMgr_.leaveLocal(); }
-	void jmp(std::string label, LabelType type = T_AUTO)
-	{
-		opJmp(label, type, 0xEB, 0xE9, 0);
-	}
-	void jmp(const Label& label, LabelType type = T_AUTO)
-	{
-		opJmp(label, type, 0xEB, 0xE9, 0);
-	}
+
+	void jmp(std::string label, LabelType type = T_AUTO) { opJmp(label, type, 0xEB, 0xE9, 0); }
+	void jmp(const Label& label, LabelType type = T_AUTO) { opJmp(label, type, 0xEB, 0xE9, 0); }
 	void jmp(const char *label, LabelType type = T_AUTO) { jmp(std::string(label), type); }
-	void jmp(const void *addr, LabelType type = T_AUTO)
-	{
-		opJmpAbs(addr, type, 0xEB, 0xE9);
-	}
-	void jmp(const Operand& op)
-	{
-		opR_ModM(op, BIT, 4, 0xFF, NONE, NONE, true);
-	}
+	void jmp(const void *addr, LabelType type = T_AUTO) { opJmpAbs(addr, type, 0xEB, 0xE9); }
+	void jmp(const Operand& op) { opR_ModM(op, BIT, 4, 0xFF, NONE, NONE, true); }
+
+	void je(std::string label, LabelType type = T_AUTO) { opJmp(label, type, 0x74, 0x84, 0x0F); }
+	void je(const Label& label, LabelType type = T_AUTO) { opJmp(label, type, 0x74, 0x84, 0x0F); }
+	void je(const char *label, LabelType type = T_AUTO) { je(std::string(label), type); }
+	void je(const void *addr) { opJmpAbs(addr, T_NEAR, 0x74, 0x84, 0x0F); }
+
+	void jne(std::string label, LabelType type = T_AUTO) { opJmp(label, type, 0x75, 0x85, 0x0F); }
+	void jne(const Label& label, LabelType type = T_AUTO) { opJmp(label, type, 0x75, 0x85, 0x0F); }
+	void jne(const char *label, LabelType type = T_AUTO) { jne(std::string(label), type); }
+	void jne(const void *addr) { opJmpAbs(addr, T_NEAR, 0x75, 0x85, 0x0F); }
+
 	void call(const Operand& op)
 	{
 		opR_ModM(op, 16 | i32e, 2, 0xFF, NONE, NONE, true);
