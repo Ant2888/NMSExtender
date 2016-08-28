@@ -82,6 +82,8 @@ class MemoryManager{
 		AllocatedMemory* lastWritten;
 		AllocatedMemory container;**/
 
+		bool ExecBranch(uintptr_t src, uintptr_t dst, byte command, size_t len);
+
 		//The address AM was allocated at
 		void* m_addr;
 		//The bytes that AM can hold
@@ -90,8 +92,6 @@ class MemoryManager{
 		size_t m_bytesWritten;
 		//The handle for where to start allocation
 		void* m_locAlloc;
-
-		bool ExecBranch(uintptr_t src, uintptr_t dst, uint8_t command, size_t len);
 };
 
 extern MemoryManager global_Memory;

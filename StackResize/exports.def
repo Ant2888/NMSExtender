@@ -1,0 +1,4 @@
+LIBRARY "STACKRESIZE"
+EXPORTS
+OnStart
+GrabVirtualMem

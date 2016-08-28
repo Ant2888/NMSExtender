@@ -60,7 +60,8 @@ void AddonManager::LoadMods(void){
 			mod.startUp = (_OnStart)GetProcAddress(mod.mHandle, "OnStart");
 			if (mod.startUp){
 				if (!CallStart(mod)){
-					MessageBox(0, "Mod Failed to Start... Unloading It", mIter.GetFullPath().c_str(), MB_ICONWARNING | MB_OK);
+					std::string failMessage = "Mod: [" + mod.modDetails.name + "] Failed to Start... Unloading It";
+					MessageBox(0, failMessage.c_str(), mIter.GetFullPath().c_str(), MB_ICONWARNING | MB_OK);
 					FreeLibrary(mod.mHandle);
 				}
 				else{

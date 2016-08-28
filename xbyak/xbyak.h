@@ -1952,6 +1952,7 @@ private:
 		opVex(x, 0, op, type, code, imm);
 	}
 public:
+#include "xbyak_mnemonic_clean.h"
 	unsigned int getVersion() const { return VERSION; }
 	using CodeArray::db;
 	const Mmx mm0, mm1, mm2, mm3, mm4, mm5, mm6, mm7;
@@ -2010,23 +2011,13 @@ public:
 	void assignL(Label& dst, const Label& src) { labelMgr_.assign(dst, src); }
 	void inLocalLabel() { labelMgr_.enterLocal(); }
 	void outLocalLabel() { labelMgr_.leaveLocal(); }
-	void jmp(std::string label, LabelType type = T_AUTO)
-	{
-		opJmp(label, type, 0xEB, 0xE9, 0);
-	}
-	void jmp(const Label& label, LabelType type = T_AUTO)
-	{
-		opJmp(label, type, 0xEB, 0xE9, 0);
-	}
+
+	void jmp(std::string label, LabelType type = T_AUTO) { opJmp(label, type, 0xEB, 0xE9, 0); }
+	void jmp(const Label& label, LabelType type = T_AUTO) { opJmp(label, type, 0xEB, 0xE9, 0); }
 	void jmp(const char *label, LabelType type = T_AUTO) { jmp(std::string(label), type); }
-	void jmp(const void *addr, LabelType type = T_AUTO)
-	{
-		opJmpAbs(addr, type, 0xEB, 0xE9);
-	}
-	void jmp(const Operand& op)
-	{
-		opR_ModM(op, BIT, 4, 0xFF, NONE, NONE, true);
-	}
+	void jmp(const void *addr, LabelType type = T_AUTO) { opJmpAbs(addr, type, 0xEB, 0xE9); }
+	void jmp(const Operand& op) { opR_ModM(op, BIT, 4, 0xFF, NONE, NONE, true); }
+
 	void call(const Operand& op)
 	{
 		opR_ModM(op, 16 | i32e, 2, 0xFF, NONE, NONE, true);

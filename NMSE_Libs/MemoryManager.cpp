@@ -142,7 +142,7 @@ bool MemoryManager::ExecBranch(uintptr_t src, uintptr_t dst, uint8_t command, si
 	//grab the relative jmp
 	uintptr_t rtMemAddr = (uintptr_t)rtMem;
 	uintptr_t nextByte = src + 6;
-	ptrdiff_t ripDiff = rtMemAddr-nextByte;
+	ptrdiff_t ripDiff = rtMemAddr - nextByte;
 
 	//null the bytes (your job to replace at the moment) -- use xbyak
 	//VirtualSet(src, 0x90, len); -- nyi
@@ -155,7 +155,7 @@ bool MemoryManager::ExecBranch(uintptr_t src, uintptr_t dst, uint8_t command, si
 	*rtMem = dst;
 
 	return true;
-};
+}
 
 void* MemoryManager::AllocateSpace(size_t bytes){
 	if (m_addr){
