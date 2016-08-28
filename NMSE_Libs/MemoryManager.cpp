@@ -5,6 +5,7 @@ MemoryManager local_Memory;
 
 MemoryManager::MemoryManager()
 	: m_addr(nullptr)
+	, m_locAlloc(nullptr)
 	, m_memAllocated(0)
 	, m_bytesWritten(0){
 	//
@@ -121,6 +122,14 @@ size_t MemoryManager::RemainingSpace(){
 
 
 bool MemoryManager::PatchBranch(uintptr_t src, uintptr_t dst, size_t len){
+	return ExecBranch(src, dst, JMPDF, len);
+}
+
+bool MemoryManager::CallBranch(uintptr_t src, uintptr_t dst, size_t len){
+	return ExecBranch(src, dst, CALLDF, len);
+}
+
+bool MemoryManager::ExecBranch(uintptr_t src, uintptr_t dst, uint8_t command, size_t len){
 	// need atleast 5 bytes to write the jump
 	if (len < 5 || !m_addr){
 		return false;
@@ -140,7 +149,7 @@ bool MemoryManager::PatchBranch(uintptr_t src, uintptr_t dst, size_t len){
 
 	uint8_t instr[6];
 	instr[0] = 0xff;
-	instr[1] = JMPDF;
+	instr[1] = command;
 	*((sint32_t*)&instr[2]) = (sint32_t)ripDiff;
 	VirtualWrite(src, instr, sizeof(instr));
 	*rtMem = dst;

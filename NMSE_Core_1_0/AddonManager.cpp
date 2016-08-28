@@ -8,6 +8,10 @@ AddonManager::~AddonManager(){
 	UnLoad();
 }
 
+void AddonManager::SetMainDLL(HANDLE h){
+	m_mainDLL = h;
+}
+
 VERSION AddonManager::GetNMSVersion(){
 	if (CheckFile(RunTimePath() + "\\steam_api64.dll")){
 		return STEAM;
@@ -47,6 +51,12 @@ void AddonManager::LoadMods(void){
 		curMod = &mod;
 		mod.mHandle = (HMODULE)LoadLibrary(modPath.c_str());
 		if (mod.mHandle){
+			//check if the user is polling vmem
+			_UseAllocMemory reg2 = (_UseAllocMemory)GetProcAddress(mod.mHandle, "GrabVirtualMem");
+			if (reg2){
+				reg2(&global_Memory, &local_Memory);
+			}
+
 			mod.startUp = (_OnStart)GetProcAddress(mod.mHandle, "OnStart");
 			if (mod.startUp){
 				if (!CallStart(mod)){
@@ -81,7 +91,9 @@ void AddonManager::LoadMods(void){
 bool AddonManager::CallStart(MOD& mod){
 	__try{
 		mod.modDetails.version = GetNMSVersion();
-		if (!mod.startUp(mod.mHandle, mod.modDetails)) return false;
+		mod.modDetails.dllHandle = m_mainDLL;
+		if (!mod.startUp(mod.mHandle, mod.modDetails)) 
+			return false;
 		return true;
 	}
 	__except (1){

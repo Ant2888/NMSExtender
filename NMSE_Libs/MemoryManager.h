@@ -73,6 +73,9 @@ class MemoryManager{
 		//Keep len at 6 for this build (I am not responsible for what can happen otherwise:) )
 		bool PatchBranch(uintptr_t src, uintptr_t rtMem, size_t len = 6);
 
+		//Calls rtMem from src, this keeps all regs intact while setting a return address for the code at rtMem to call ret for
+		bool CallBranch(uintptr_t src, uintptr_t rtMem, size_t len = 6);
+
 		void* FirstWrittableAddr();
 	private:
 		/**Struct containing all the AllocatedMemory details
@@ -87,6 +90,8 @@ class MemoryManager{
 		size_t m_bytesWritten;
 		//The handle for where to start allocation
 		void* m_locAlloc;
+
+		bool ExecBranch(uintptr_t src, uintptr_t dst, uint8_t command, size_t len);
 };
 
 extern MemoryManager global_Memory;

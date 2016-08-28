@@ -11,9 +11,6 @@ void RegisterModForEvents(HMODULE mod){
 			reg1(RegisterApplyEvent);
 		}
 
-		_UseAllocMemory reg2 = (_UseAllocMemory)GetProcAddress(mod, "RegisterHooks");
-		if (reg2){
-			reg2(&global_Memory, &local_Memory);
-		}
+		
 	}
 }
