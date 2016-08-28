@@ -1,11 +1,11 @@
 #include "HookFuncs.h"
 #include "xbyak/xbyak.h"
 
-typedef void(*_FuncImHooking)(void); //if you know the params you can just put void*'s for as many as there are
+//if you know the params you can just put void*'s for as many as there are
+typedef void(*_FuncImHooking)(void); 
 
-VAddr<_FuncImHooking> AreaToPatchJMP(
-	MemoryManager::FindPattern("\x85\xC0\x75\x0B\x69\x47\x78\xFA\x00\x00\x00", "xxxxxxxxxxx", 0x200000)
-	- VAManager::baseAddr); //I recommend you look into FindPattern in MemoryManager
+//I recommend you look into FindPattern in MemoryManager
+VAddr<_FuncImHooking> AreaToPatchJMP(findStack() - VAManager::baseAddr); 
 
 
 void WriteHook(SizeSettings settings){
@@ -90,7 +90,5 @@ uintptr_t findStack(){
 			if (stack.type == 0):
 				stack.maxAmount = storage.type * 250
 	*/
-	uintptr_t funcAddr = MemoryManager::FindPattern("\x85\xC0\x75\x0B\x69\x47\x78\xFA\x00\x00\x00", "xxxxxxxxxxx", 0x200000);
-
-	return funcAddr;
+	return MemoryManager::FindPattern("\x85\xC0\x75\x0B\x69\x47\x78\xFA\x00\x00\x00", "xxxxxxxxxxx", 0x200000);
 }

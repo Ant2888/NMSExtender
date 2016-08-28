@@ -81,6 +81,7 @@ class MemoryManager{
 		/**Struct containing all the AllocatedMemory details
 		AllocatedMemory* lastWritten;
 		AllocatedMemory container;**/
+
 		bool ExecBranch(uintptr_t src, uintptr_t dst, byte command, size_t len);
 
 		//The address AM was allocated at

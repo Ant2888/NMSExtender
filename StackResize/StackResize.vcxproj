@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A2C7EE54-9E94-4833-8E97-DF082950D653}</ProjectGuid>
-    <RootNamespace>Gula</RootNamespace>
+    <RootNamespace>StackResize</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
