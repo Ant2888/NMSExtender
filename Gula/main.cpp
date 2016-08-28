@@ -12,20 +12,18 @@ uintptr_t stack_ptr;
 SizeSettings settings;
 
 DWORD WINAPI ThreadProc(LPVOID threadParam){
-	Sleep(20000);
-
 	WriteHook(settings);
 
 	CloseHandle(hMonitor);
 	return 0;
 }
 
-SizeSettings GetSettings() {
+SizeSettings GetSettings(LPCSTR dir) {
 	return {
-		(int)GetPrivateProfileInt("SIZE_SETTINGS", "DEFAULT_SUBS_SIZE", 100, "Gula.ini"),
-		(int)GetPrivateProfileInt("SIZE_SETTINGS", "DEFAULT_ITEM_SIZE", 10, "Gula.ini"),
-		(int)GetPrivateProfileInt("SIZE_SETTINGS", "SHIP_MULT", 10, "Gula.ini"),
-		(int)GetPrivateProfileInt("SIZE_SETTINGS", "CHARGE_MULT", 2, "Gula.ini")
+		(int)GetPrivateProfileInt("SIZE_SETTINGS", "DEFAULT_SUBS_SIZE", 250, dir),
+		(int)GetPrivateProfileInt("SIZE_SETTINGS", "DEFAULT_ITEM_SIZE", 1, dir),
+		(int)GetPrivateProfileInt("SIZE_SETTINGS", "SHIP_MULT", 2, dir),
+		(int)GetPrivateProfileInt("SIZE_SETTINGS", "CHARGE_VAL", -1, dir)
 	};
 }
 
@@ -38,7 +36,7 @@ extern "C"
 		local_Memory = mem.local;
 		global_Memory = mem.global;
 
-		settings = GetSettings();
+		settings = GetSettings("./NMSE/Gula.ini");
 
 		hMonitor = CreateThread(0, 0, ThreadProc, 0, 0, 0);
 		return true;

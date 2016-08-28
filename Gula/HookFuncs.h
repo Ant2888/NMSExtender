@@ -8,7 +8,7 @@ struct SizeSettings {
 	int DEFAULT_SUBS_SIZE;
 	int DEFAULT_ITEM_SIZE;
 	int SHIP_MULT;
-	int CHARGE_MULT;
+	int CHARGE_VAL;
 };
 
 void WriteHook( SizeSettings );
