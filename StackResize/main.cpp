@@ -31,7 +31,7 @@ extern "C"
 {
 	bool OnStart(HMODULE& mHandle, ModDetails& info){
 		localH = mHandle;
-		info.name = "Gula";
+		info.name = "StackResize";
 		vers = info.version; 
 
 		settings = GetSettings("./NMSE/StackResize.ini");
