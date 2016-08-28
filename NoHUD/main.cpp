@@ -18,7 +18,6 @@ DWORD WINAPI ThreadProc(LPVOID threadParam){
 	bool m_shwHud = false;
 	SHORT btnKeyState;
 		
-	hudStuff = findHUD();
 
 	while (flag){
 		btnKeyState = GetAsyncKeyState(KEYCHK);
@@ -46,26 +45,7 @@ extern "C"
 		// Do whatever you want from here on -- send out a thread to do constant monitoring. Only do patches or just start a thread for patching
 		// If this gets help up the rest of the program will fault
 
-		/**
-		std::string filePath(RunTimePath() + "\\NMSE\\KeyBind.txt");
-		std::ifstream file(filePath, std::ios::in);
-		if (file.is_open()){
-		int val;
-		if (file >> val){
-		KEYCHK = val;
-		file.close();
-		}
-		else{
-		MessageBox(0, "FAILD AT LOAD VAL", "", MB_OK);
-		KEYCHK = VK_F5;
-		}
-		}
-		else{
-		MessageBox(0, "FAILD AT LOAD FILE", "", MB_OK);
-		KEYCHK = VK_F5;
-		}
-		**/
-
+		hudStuff = findHUD();
 		hMonitor = CreateThread(0, 0, ThreadProc, 0, 0, 0);
 		return true;
 	}

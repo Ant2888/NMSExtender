@@ -6,17 +6,9 @@
 #include <fstream>
 
 HMODULE localH;
-HANDLE hMonitor;
 VERSION vers;
 uintptr_t stack_ptr;
 SizeSettings settings;
-
-DWORD WINAPI ThreadProc(LPVOID threadParam){
-	WriteHook(settings);
-
-	CloseHandle(hMonitor);
-	return 0;
-}
 
 SizeSettings GetSettings(LPCSTR dir) {
 	return {
@@ -36,14 +28,12 @@ extern "C"
 
 		settings = GetSettings("./NMSE/StackResize.ini");
 
-		hMonitor = CreateThread(0, 0, ThreadProc, 0, 0, 0);
+		WriteHook(settings);
 		return true;
 	}
 
-	bool GrabVirtualMem(MemoryManager* globalMem, MemoryManager* localMem) {
+	void GrabVirtualMem(MemoryManager* globalMem, MemoryManager* localMem) {
 		global_Memory = *globalMem;
 		local_Memory = *localMem;
-
-		return globalMem != NULL && localMem != NULL;
 	}
 };
