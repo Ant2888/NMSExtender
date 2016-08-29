@@ -2,33 +2,41 @@
 #include "TestHooks.h"
 #include "NMSE_Libs\MemoryManager.h"
 #include "EventManager.h"
+#include "NMSE_Libs\FFileStream.h"
 
 HANDLE modHandle;
 HHOOK hkeyHook;
 static bool isRun = false;
 
-
 void OnAttach(){
 	if (isRun) return;
 	isRun = true;
 
-	//aloc mem
+	global_Logger.OpenFile(std::string(RunTimePath()+"\\NMSE\\LOG.txt").c_str(), false);
 
+	//aloc mem
 	if (!global_Memory.CreateMemory(1024 * 48)){
 		MessageBox(0, "Global Mem Failed To Alloc", "NMSE", MB_OK | MB_ICONWARNING);
+		ERRORMSG("GMEM Failed To Alloc", GetLastError());
 		return;
 	}
+
+	SUCCESSMSG("Global Mem Alloced");
 
 	if (!local_Memory.CreateMemory(1024 * 48, modHandle)){
-		MessageBox(0, "Local Mem Failed To Alloc", "NMSE", MB_OK| MB_ICONWARNING);
+		MessageBox(0, "Local Mem Failed To Alloc", "NMSE", MB_OK | MB_ICONWARNING);
+		ERRORMSG("GMEM Failed To Alloc", GetLastError());
 		return;
 	}
 
+	SUCCESSMSG("Local Mem Alloced");
 
 	//TestHook();
 	modManager.SetMainDLL(modHandle);
 	modManager.Init();
-	
+
+	SUCCESSMSG("All plugins loaded");
+
 	Sleep(1000);
 	std::string rtp(RunTimePath()); //save some func calls
 	if (CheckFile(rtp + "\\opengl32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
@@ -58,6 +66,7 @@ void OnAttach(){
 	else{
 		std::cout << "No opengl32.dll Found! \n";
 	}
+	SUCCESSMSG("NMSE Initialized");
 	FlushInstructionCache(GetCurrentProcess(), NULL, 0);
 }
 
