@@ -92,7 +92,6 @@
   <ItemGroup>
     <ClInclude Include="DefStuff.h" />
     <ClInclude Include="FFileStream.h" />
-    <ClInclude Include="GlobalLogger.h" />
     <ClInclude Include="Hooking.h" />
     <ClInclude Include="MemoryManager.h" />
     <ClInclude Include="ModIterator.h" />
@@ -102,9 +101,7 @@
     <ClInclude Include="VirtualWrite.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DefStuff.cpp" />
     <ClCompile Include="FFileStream.cpp" />
-    <ClCompile Include="GlobalLogger.cpp" />
     <ClCompile Include="Hooking.cpp" />
     <ClCompile Include="MemoryManager.cpp" />
     <ClCompile Include="ModIterator.cpp" />

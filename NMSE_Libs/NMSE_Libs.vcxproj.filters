@@ -27,9 +27,6 @@
     <ClInclude Include="VirtualAddress.h">
       <Filter>addressing</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalLogger.h">
-      <Filter>debugging</Filter>
-    </ClInclude>
     <ClInclude Include="FFileStream.h">
       <Filter>debugging</Filter>
     </ClInclude>
@@ -59,16 +56,10 @@
     <ClCompile Include="VirtualAddress.cpp">
       <Filter>addressing</Filter>
     </ClCompile>
-    <ClCompile Include="GlobalLogger.cpp">
-      <Filter>debugging</Filter>
-    </ClCompile>
     <ClCompile Include="FFileStream.cpp">
       <Filter>debugging</Filter>
     </ClCompile>
     <ClCompile Include="VersionControl.cpp">
-      <Filter>utils</Filter>
-    </ClCompile>
-    <ClCompile Include="DefStuff.cpp">
       <Filter>utils</Filter>
     </ClCompile>
     <ClCompile Include="MemoryManager.cpp">
