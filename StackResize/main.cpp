@@ -33,6 +33,9 @@ extern "C"
 	}
 
 	void GrabVirtualMem(MemoryManager* globalMem, MemoryManager* localMem) {
+		global_Memory->Destroy();
+		local_Memory->Destroy();
+
 		global_Memory = globalMem;
 		local_Memory = localMem;
 	}
