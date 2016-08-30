@@ -17,6 +17,9 @@
     <ClCompile Include="RegisterCallbacks.cpp">
       <Filter>API</Filter>
     </ClCompile>
+    <ClCompile Include="OGLHook.cpp">
+      <Filter>game hooks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="exports.def" />
@@ -50,6 +53,9 @@
     </ClInclude>
     <ClInclude Include="RegisterCallbacks.h">
       <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLHook.h">
+      <Filter>game hooks</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

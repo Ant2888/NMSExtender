@@ -28,6 +28,9 @@ class FFileStream{
 
 extern FFileStream global_Logger;
 
+inline bool WRITEMSG(const char* msg){
+	return global_Logger.WriteToFile(msg);
+}
 
 inline bool SUCCESSMSG(const char* msg){
 	return global_Logger.WriteSuccess(msg);

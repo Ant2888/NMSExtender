@@ -2,7 +2,7 @@
 #include "TestHooks.h"
 #include "NMSE_Libs\MemoryManager.h"
 #include "EventManager.h"
-#include "NMSE_Libs\FFileStream.h"
+#include "OGLHook.h"
 
 HANDLE modHandle;
 HHOOK hkeyHook;
@@ -14,10 +14,11 @@ void OnAttach(){
 
 	global_Logger.OpenFile(std::string(RunTimePath()+"\\NMSE\\LOG.txt").c_str(), false);
 
+	WRITEMSG("---- NMSE CORE Hook Init ----\n");
 	//aloc mem
 	if (!global_Memory.CreateMemory(1024 * 48)){
 		MessageBox(0, "Global Mem Failed To Alloc", "NMSE", MB_OK | MB_ICONWARNING);
-		ERRORMSG("GMEM Failed To Alloc", GetLastError());
+		ERRORMSG("GMEM Failed To Alloc: ", GetLastError());
 		return;
 	}
 
@@ -25,7 +26,7 @@ void OnAttach(){
 
 	if (!local_Memory.CreateMemory(1024 * 48, modHandle)){
 		MessageBox(0, "Local Mem Failed To Alloc", "NMSE", MB_OK | MB_ICONWARNING);
-		ERRORMSG("GMEM Failed To Alloc", GetLastError());
+		ERRORMSG("LMEM Failed To Alloc: ", GetLastError());
 		return;
 	}
 
@@ -35,38 +36,10 @@ void OnAttach(){
 	modManager.SetMainDLL(modHandle);
 	modManager.Init();
 
-	SUCCESSMSG("All plugins loaded");
-
-	Sleep(1000);
-	std::string rtp(RunTimePath()); //save some func calls
-	if (CheckFile(rtp + "\\opengl32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
-		//so this hack will have to do
-		LoadLibrary(std::string(RunTimePath() + "\\opengl32.dll").c_str());
-	}
-	else if (CheckFile(rtp + "\\Opengl32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
-		//so this hack will have to do
-		LoadLibrary(std::string(rtp + "\\Opengl32.dll").c_str());
-	}
-	else if (CheckFile(rtp + "\\OPENGL32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
-		//so this hack will have to do
-		LoadLibrary(std::string(rtp + "\\OPENGL32.dll").c_str());
-	}
-	else if (CheckFile(rtp + "\\OpenGL32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
-		//so this hack will have to do
-		LoadLibrary(std::string(rtp + "\\OpenGL32.dll").c_str());
-	}
-
-	if (CheckFile(rtp + "\\xinput9_1_0.dll")){
-		LoadLibrary(std::string(rtp + "\\xinput9_1_0.dll").c_str());
-	}
-	if (CheckFile(rtp + "\\opengl32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
-		//so this hack will have to do
-		std::cout << "YOU HAVE THE OPENGL32 DLL INSTALLED\n";
-	}
-	else{
-		std::cout << "No opengl32.dll Found! \n";
-	}
+	//call last so the hook doesn't start
+	HookOGL();
 	SUCCESSMSG("NMSE Initialized");
+	WRITEMSG("---- NMSE CORE Hook Complete ----\n");
 	FlushInstructionCache(GetCurrentProcess(), NULL, 0);
 }
 

@@ -102,6 +102,7 @@
     <ClCompile Include="ApplyFuncEvents.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="OGLHook.cpp" />
     <ClCompile Include="RegisterCallbacks.cpp" />
     <ClCompile Include="TestHooks.cpp" />
   </ItemGroup>
@@ -118,6 +119,7 @@
     <ClInclude Include="ApplyFuncEvents.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="ModAPI.h" />
+    <ClInclude Include="OGLHook.h" />
     <ClInclude Include="RegisterCallbacks.h" />
     <ClInclude Include="TestHooks.h" />
   </ItemGroup>
