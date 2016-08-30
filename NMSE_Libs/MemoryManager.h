@@ -51,13 +51,10 @@ class MemoryManager{
 		static bool Destroy(MemoryManager*);
 		bool Destroy();
 
-		//Attemps to allocate memory inside the space created by creatememory
-		//This essentially just keeps the AllocatedMem struct up to date.
-		//If you didn't call it you'd just need to make sure the struct is up to date.
-		//Returns address to use -- should be followed up with a CalcAlloced
+		//Returns the address to write to for that amount of bytes. This assumes you are going to use it SO USE IT
 		void* AllocateSpace(size_t bytes);
 
-		//Use for xbyak
+		//Calcs how many bytes to allocate
 		void CalcAllocated(const void* endAddr);
 		
 		//Allocated memory at the lowest FREE location in the image space
