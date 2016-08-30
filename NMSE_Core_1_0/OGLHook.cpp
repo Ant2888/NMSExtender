@@ -35,11 +35,11 @@ void HookOGL(){
 		}
 	};
 
-	void* addrToWrite = local_Memory.FirstWrittableAddr();
+	void* addrToWrite = local_Memory->FirstWrittableAddr();
 	ApplyHook hook(addrToWrite);
-	local_Memory.CalcAllocated(hook.getCurr());
+	local_Memory->CalcAllocated(hook.getCurr());
 
 	LoadOGL_Original = (_LoadOGL)addrToWrite;
 
-	global_Memory.PatchBranch(LoadOGL.GetUIntPtr(), (uintptr_t)LoadOGL_Hook, 7);
+	global_Memory->PatchBranch(LoadOGL.GetUIntPtr(), (uintptr_t)LoadOGL_Hook, 7);
 }

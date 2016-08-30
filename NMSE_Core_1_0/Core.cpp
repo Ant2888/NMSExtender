@@ -16,7 +16,7 @@ void OnAttach(){
 
 	WRITEMSG("---- NMSE CORE Hook Init ----\n");
 	//aloc mem
-	if (!global_Memory.CreateMemory(1024 * 48)){
+	if (!global_Memory->CreateMemory(1024 * 48)){
 		MessageBox(0, "Global Mem Failed To Alloc", "NMSE", MB_OK | MB_ICONWARNING);
 		ERRORMSG("GMEM Failed To Alloc: ", GetLastError());
 		return;
@@ -24,7 +24,7 @@ void OnAttach(){
 
 	SUCCESSMSG("Global Mem Alloced");
 
-	if (!local_Memory.CreateMemory(1024 * 48, modHandle)){
+	if (!local_Memory->CreateMemory(1024 * 48, modHandle)){
 		MessageBox(0, "Local Mem Failed To Alloc", "NMSE", MB_OK | MB_ICONWARNING);
 		ERRORMSG("LMEM Failed To Alloc: ", GetLastError());
 		return;

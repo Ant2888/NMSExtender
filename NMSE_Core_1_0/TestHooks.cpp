@@ -28,11 +28,11 @@ void TestHook(){
 		}
 	};
 
-	void* addrToWrite = local_Memory.FirstWrittableAddr();
+	void* addrToWrite = local_Memory->FirstWrittableAddr();
 	ApplyHook hook(addrToWrite);
-	local_Memory.CalcAllocated(hook.getCurr());
+	local_Memory->CalcAllocated(hook.getCurr());
 
 	ApplyFunc_Original = (_ApplyFunc)addrToWrite;
 
-	global_Memory.PatchBranch(ApplyFunc.GetUIntPtr(), (uintptr_t)ApplyChanges_Hook);
+	global_Memory->PatchBranch(ApplyFunc.GetUIntPtr(), (uintptr_t)ApplyChanges_Hook);
 }

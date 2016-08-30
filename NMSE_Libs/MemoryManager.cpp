@@ -1,7 +1,7 @@
 #include "MemoryManager.h"
 
-MemoryManager global_Memory;
-MemoryManager local_Memory;
+MemoryManager *global_Memory = new MemoryManager();
+MemoryManager *local_Memory = new MemoryManager();
 
 MemoryManager::MemoryManager()
 	: m_addr(nullptr)

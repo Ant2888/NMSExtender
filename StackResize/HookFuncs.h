@@ -11,5 +11,5 @@ struct SizeSettings {
 	int CHARGE_VAL;
 };
 
-void WriteHook( SizeSettings, MemoryManager*, MemoryManager* );
+void WriteHook( SizeSettings );
 uintptr_t findStack();
