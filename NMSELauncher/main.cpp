@@ -52,6 +52,7 @@ int main(int argc, char* argv) {
 	std::cout << "HOOK BASE: " << std::hex << GetModuleHandle(NULL) << std::endl;
 	MessageBox(0, "APP SUSPENDED, HOOK AND PRESS OK", "CUSTOM NMSE", MB_OK | MB_ICONWARNING);
 #endif
+
 	//inject the dll
 	std::string NMSEsteam = curPath + "\\NMSE_steam.dll";
 	bool isInjected = InjectDLLThread(&nmsProc, NMSEsteam.c_str(), true, false);
@@ -69,19 +70,20 @@ int main(int argc, char* argv) {
 
 	std::string rtp(RunTimePath()); //save some func calls
 
-	if (CheckFile(rtp + "\\opengl32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
+	if (CheckFile(rtp + "\\opengl32.dll") || CheckFile(rtp + "\\OPENGL32.dll")){ //stat doesn't seem to have a quick and easy way to implment non case-sensitivity
 		//so this hack will have to do
-		std::cout << "YOU HAVE THE OPENGL32 DLL INSTALLED\n";
+		std::cout << "Please rename your opengl32 to ReShade64\n";
+		Sleep(25000);
 	}
 	else{
-		std::cout << "No opengl32.dll Found! \n";
+		std::cout << "\nProgram Injected Everything Succesfully!\n";
+		std::cout << "Please wait for this to close before worrying :)\n\n";
+		if (CheckFile(rtp + "\\ReShade64.dll") || CheckFile(rtp + "\\reshade64.dll")){
+			std::cout << "You're using a shader. You might have to wait longer than usual!\n";
+		}
+		CloseHandle(nmsProc.hProcess);
+		CloseHandle(nmsProc.hThread);
+		Sleep(25000);
 	}
-
-	
-	std::cout << "\nProgram Injected Everything Succesfully!\n";
-	std::cout << "Please wait for this to close before worrying :)\n";
-	CloseHandle(nmsProc.hProcess);
-	CloseHandle(nmsProc.hThread);
-	Sleep(25000);
 	return 0;
 }

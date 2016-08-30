@@ -42,7 +42,7 @@ void AddonManager::Init(){
 
 void AddonManager::LoadMods(void){
 	m_mods.reserve(7);
-
+	WRITEMSG("---- Mod Loading Process Started ----\n");
 	for (ModIterator mIter(modDir.c_str(), "*.dll"); !(mIter.Done()); mIter.Next()){
 		bool loaded = false;
 		std::string modPath = mIter.GetFullPath();
@@ -66,17 +66,19 @@ void AddonManager::LoadMods(void){
 				}
 				else{
 					loaded = true;
+					SUCCESSMSG(std::string("[MOD] "+ mod.modDetails.name + " LOADED").c_str());
 				}
 			}
 			else{
 				MessageBox(0, "Extern OnStart Not Found...\nLoading Failed!!!", mIter.GetFullPath().c_str(), MB_ICONWARNING | MB_OK);
+				ERRORMSG(std::string("[MOD] " + mod.modDetails.name + " FAILED TO LOAD").c_str());
 				FreeLibrary(mod.mHandle);
 			}
 
 		}
 		else{
 			std::string err(mIter.GetFullPath());
-			MessageBox(0, "The mod isn't a valid NMSE dll", err.c_str(), MB_ICONWARNING | MB_OK);
+			ERRORMSG(std::string("[DLL] " + err.substr(err.find_last_of("\\/")+1,err.size())+ " NOT A VALID NMSE DLL").c_str());
 		}
 		if (loaded){
 			RegisterModForEvents(mod.mHandle);
@@ -86,7 +88,7 @@ void AddonManager::LoadMods(void){
 			FreeLibrary(mod.mHandle);
 		}
 	}
-	std::string a = "" + m_mods.size();
+	WRITEMSG("---- Mod Loading Process Finished ----\n");
 }
 
 bool AddonManager::CallStart(MOD& mod){

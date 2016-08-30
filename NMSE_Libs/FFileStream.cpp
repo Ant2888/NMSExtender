@@ -34,16 +34,19 @@ bool FFileStream::WriteToFile(const char* buffer){
 const char* modErr = "[ERROR] ";
 bool FFileStream::WriteError(const char* errMsg, int errNum){
 	if (m_File){
-		bool toRet = true;
-		toRet &= fputs(modErr, m_File) >= 0;
-		toRet &= fputs(errMsg, m_File) >= 0;
+		if((fputs(modErr, m_File) < 0))
+			return false;
+		if((fputs(errMsg, m_File) < 0))
+			return false;
 		if (errNum){
 			char* buff;
-			itoa(errNum, buff, sizeof(int)*8+1);
-			toRet &= fputs(buff, m_File);
+			_itoa(errNum, buff, sizeof(int)*8+1);
+			if (fputs(buff, m_File) < 0)
+				return false;
 		}
-		toRet &= fputs("\n", m_File) >= 0;
-		return toRet;
+		if (fputs("\n", m_File) < 0)
+			return false;
+		return true;
 	}
 	return false;
 }
@@ -51,10 +54,12 @@ bool FFileStream::WriteError(const char* errMsg, int errNum){
 const char* modSuccess = "[SUCCESS] ";
 bool FFileStream::WriteSuccess(const char* msg){
 	if (m_File){
-		bool toRet = true;
-		toRet &= fputs(modSuccess, m_File) >= 0;
-		toRet &= fputs(msg, m_File) >= 0;
-		toRet &= fputs("\n", m_File) >= 0;
+		if(fputs(modSuccess, m_File) < 0)
+			return false;
+		if(fputs(msg, m_File) < 0)
+			return false;
+		if (fputs("\n", m_File) < 0)
+			return false; 
 		return true;
 	}
 	return false;
