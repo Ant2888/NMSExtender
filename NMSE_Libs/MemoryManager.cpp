@@ -1,7 +1,7 @@
 #include "MemoryManager.h"
 
-MemoryManager global_Memory;
-MemoryManager local_Memory;
+MemoryManager *global_Memory = new MemoryManager();
+MemoryManager *local_Memory = new MemoryManager();
 
 MemoryManager::MemoryManager()
 	: m_addr(nullptr)
@@ -163,6 +163,7 @@ void* MemoryManager::AllocateSpace(size_t bytes){
 	if (m_addr){
 		if (bytes <= RemainingSpace()){
 			m_locAlloc = ((uint8_t*)(m_addr)) + m_bytesWritten;
+			m_bytesWritten += bytes;
 			return m_locAlloc;
 		}
 	}

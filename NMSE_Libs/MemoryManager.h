@@ -94,5 +94,5 @@ class MemoryManager{
 		void* m_locAlloc;
 };
 
-extern MemoryManager global_Memory;
-extern MemoryManager local_Memory;
+extern MemoryManager *global_Memory;
+extern MemoryManager *local_Memory;

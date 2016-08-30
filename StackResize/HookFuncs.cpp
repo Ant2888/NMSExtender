@@ -64,11 +64,11 @@ void WriteHook(SizeSettings settings){
 		}
 	};
 
-	void* mem = local_Memory.FirstWrittableAddr();
+	void* mem = local_Memory->FirstWrittableAddr();
 	HookCode hook(mem, settings);
-	local_Memory.CalcAllocated(hook.getCurr());
+	local_Memory->CalcAllocated(hook.getCurr());
 
-	global_Memory.CallBranch(AreaToPatchJMP.GetUIntPtr(), (uintptr_t)mem);
+	global_Memory->CallBranch(AreaToPatchJMP.GetUIntPtr(), (uintptr_t)mem);
 }
 
 uintptr_t findStack(){

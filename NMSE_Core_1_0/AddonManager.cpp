@@ -54,7 +54,7 @@ void AddonManager::LoadMods(void){
 			//check if the user is polling vmem
 			_UseAllocMemory reg2 = (_UseAllocMemory)GetProcAddress(mod.mHandle, "GrabVirtualMem");
 			if (reg2){
-				reg2(&global_Memory, &local_Memory);
+				reg2(global_Memory, local_Memory);
 			}
 
 			mod.startUp = (_OnStart)GetProcAddress(mod.mHandle, "OnStart");
