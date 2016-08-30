@@ -10,6 +10,9 @@ VERSION vers;
 uintptr_t stack_ptr;
 SizeSettings settings;
 
+MemoryManager* gm;
+MemoryManager* lm;
+
 SizeSettings GetSettings(LPCSTR dir) {
 	return {
 		(int)GetPrivateProfileInt("SIZE_SETTINGS", "DEFAULT_SUBS_SIZE", 250, dir),
@@ -28,12 +31,12 @@ extern "C"
 
 		settings = GetSettings("./NMSE/StackResize.ini");
 
-		WriteHook(settings);
+		WriteHook(settings, gm, lm);
 		return true;
 	}
 
 	void GrabVirtualMem(MemoryManager* globalMem, MemoryManager* localMem) {
-		global_Memory = *globalMem;
-		local_Memory = *localMem;
+		gm = globalMem;
+		lm = localMem;
 	}
 };

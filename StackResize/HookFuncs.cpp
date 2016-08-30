@@ -8,7 +8,7 @@ typedef void(*_FuncImHooking)(void);
 VAddr<_FuncImHooking> AreaToPatchJMP(findStack() - VAManager::baseAddr); 
 
 
-void WriteHook(SizeSettings settings){
+void WriteHook(SizeSettings settings, MemoryManager* gm, MemoryManager* lm){
 	//you dont need the exit label you can just jump to retLbl
 	//The patch also replaces the next ATLEAST 5 byte instruction so 
 	//If there are two 3 byte instructions it will replace them so YOU have to write them back
@@ -64,11 +64,11 @@ void WriteHook(SizeSettings settings){
 		}
 	};
 
-	void* mem = local_Memory.FirstWrittableAddr();
+	void* mem = lm->FirstWrittableAddr();
 	HookCode hook(mem, settings);
-	local_Memory.CalcAllocated(hook.getCurr());
+	lm->CalcAllocated(hook.getCurr());
 
-	global_Memory.CallBranch(AreaToPatchJMP.GetUIntPtr(), (uintptr_t)mem);
+	gm->CallBranch(AreaToPatchJMP.GetUIntPtr(), (uintptr_t)mem);
 }
 
 uintptr_t findStack(){
