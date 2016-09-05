@@ -20,6 +20,7 @@ void foregroundFix(HWND hwnd){
 DWORD WINAPI ThreadProc(LPVOID threadParam){
 	HWND nmsHwnd(nullptr);
 	int antCount = 0;
+
 	while (!(nmsHwnd = FindWindow(NULL, _T("Application"))) && antCount < 12) {
 		// Search 12 times for the application
 		antCount++;
@@ -30,10 +31,13 @@ DWORD WINAPI ThreadProc(LPVOID threadParam){
 		CloseHandle(hMonitor);
 		return 0;
 	}
+
 	Sleep(1000);
+
 	DWORD nmsProcID = GetWindowThreadProcessId(nmsHwnd, 0);
 	int closeCount = 0;
 	bool isMax = false;
+
 	while (flag) {
 		if (closeCount >= 50) {
 			// Note this is subject to change. It's kind of dumb they named it this.

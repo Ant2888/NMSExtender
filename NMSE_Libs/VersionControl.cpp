@@ -35,7 +35,6 @@ static bool GetVersionStruc(std::string exe, tagVS_FIXEDFILEINFO* versStruc){
 		std::cout << "Failed to retrieve version size (ERRCODE): " << GetLastError() << std::endl;
 		return false;
 	}
-	return false;
 }
 
 

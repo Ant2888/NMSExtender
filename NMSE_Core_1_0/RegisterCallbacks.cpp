@@ -10,7 +10,7 @@ void RegisterPlayerScan(void(*paramFunc)(uint64_t, int, int, float, uint64_t, ch
 
 void RegisterModForEvents(HMODULE mod){
 	if (mod){
-		_RegisterForApplyEvents reg1 = (_RegisterForApplyEvents)GetProcAddress(mod, "RegisterForApplyEvent");
+		auto reg1 = (_RegisterForApplyEvents)GetProcAddress(mod, "RegisterForApplyEvent");
 		if (reg1){
 			reg1(RegisterApplyEvent);
 		}
