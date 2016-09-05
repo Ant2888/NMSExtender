@@ -6,7 +6,7 @@ void RegisterApplyEvent(void(*paramFunc)()){
 
 void RegisterModForEvents(HMODULE mod){
 	if (mod){
-		_RegisterForApplyEvents reg1 = (_RegisterForApplyEvents)GetProcAddress(mod, "RegisterForApplyEvent");
+		auto reg1 = (_RegisterForApplyEvents)GetProcAddress(mod, "RegisterForApplyEvent");
 		if (reg1){
 			reg1(RegisterApplyEvent);
 		}

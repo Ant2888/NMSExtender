@@ -5,9 +5,9 @@ MemoryManager *local_Memory = new MemoryManager();
 
 MemoryManager::MemoryManager()
 	: m_addr(nullptr)
-	, m_locAlloc(nullptr)
 	, m_memAllocated(0)
-	, m_bytesWritten(0){
+	, m_bytesWritten(0)
+	, m_locAlloc(nullptr){
 	//
 };
 
@@ -37,8 +37,8 @@ uintptr_t MemoryManager::FindPattern(char* pattern, char* mask, DWORD speedUpMin
 	MODULEINFO modinfo = { 0 };
 	GetModuleInformation(GetCurrentProcess(), GetModuleHandle(NULL), &modinfo, sizeof(MODULEINFO));
 
-	DWORD maskBuffer = (DWORD)strlen(mask);
-	DWORD imgSize = ((DWORD)modinfo.SizeOfImage); 
+	auto maskBuffer = (DWORD)strlen(mask);
+	auto imgSize = ((DWORD)modinfo.SizeOfImage); 
 
 	if (speedUpMaxOffset < imgSize)
 		imgSize -= speedUpMaxOffset;

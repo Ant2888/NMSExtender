@@ -25,7 +25,6 @@ int main(int argc, char* argv) {
 		std::cout << "Using GOG Version\n";
 	}
 
-
 	std::cout << "Booting NMS...\n";
 
 	std::string exe = curPath + "\\" + prgmName;
@@ -34,7 +33,7 @@ int main(int argc, char* argv) {
 	
 
 	if (steam){
-		const char* nmsId = "275850";
+		auto nmsId = "275850";
 		SetEnvironmentVariable("SteamGameId", nmsId);
 		SetEnvironmentVariable("SteamAppID", nmsId);
 	}
@@ -45,8 +44,8 @@ int main(int argc, char* argv) {
 
 	if (!CreateProcess(exe.c_str(), NULL, NULL, NULL, false,
 		CREATE_SUSPENDED, NULL, NULL, &startup, &nmsProc)) {
-		std::cout << "Failed to start NMS: " << GetLastError() << std::endl;
-		std::cout << "If 740 please try running as Admin\n";
+		std::cerr << "Failed to start NMS: " << GetLastError() << std::endl;
+		std::cerr << "If 740 please try running as Admin\n";
 	}
 #if DEBUG
 	std::cout << "HOOK BASE: " << std::hex << GetModuleHandle(NULL) << std::endl;
@@ -54,13 +53,13 @@ int main(int argc, char* argv) {
 #endif
 
 	//inject the dll
-	std::string NMSEsteam = curPath + "\\NMSE_steam.dll";
-	bool isInjected = InjectDLLThread(&nmsProc, NMSEsteam.c_str(), true, false);
+	auto NMSEsteam = curPath + "\\NMSE_steam.dll";
+	auto isInjected = InjectDLLThread(&nmsProc, NMSEsteam.c_str(), true, false);
 	if (isInjected) {
 		std::cout << "Loader injected...\n";
 	}
 	else {
-		std::cout << "Loader Injection Failed\n";
+		std::cerr << "Loader Injection Failed\n";
 	}
 
 	std::cout << "Resuming thread...\n";
