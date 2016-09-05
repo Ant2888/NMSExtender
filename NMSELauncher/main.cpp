@@ -13,7 +13,7 @@ int main(int argc, char* argv) {
 	std::string curPath = RunTimePath();
 
 	if (CheckFile(curPath + "\\opengl32.dll")){ 
-		if (rename(std::string(curPath + "\\opengl32.dll").c_str(), std::string(curPath + "\\reshade64.dll").c_str())){
+		if (rename((curPath + "\\opengl32.dll").c_str(), (curPath + "\\reshade64.dll").c_str())){
 			MessageBox(0, "FAILED TO RENAME \"opengl32.dll\" PLEASE RENAME IT TO \"reshade64.dll\"", "NMSE: OPENGL32", MB_OK | MB_ICONWARNING);
 			std::cout << "Failed to rename ogl32\n";
 			return 0;
@@ -22,7 +22,7 @@ int main(int argc, char* argv) {
 	}
 
 	if (CheckFile(curPath + "\\OPENGL32.dll")){
-		if (rename(std::string(curPath + "\\OPENGL32.dll").c_str(), std::string(curPath + "\\reshade64.dll").c_str())){
+		if (rename((curPath + "\\OPENGL32.dll").c_str(), (curPath + "\\reshade64.dll").c_str())){
 			MessageBox(0, "FAILED TO RENAME \"OPENGL32.dll\" PLEASE RENAME IT TO \"reshade64.dll\"", "NMSE: OPENGL32", MB_OK | MB_ICONWARNING);
 			std::cout << "Failed to rename ogl32\n";
 			return 0;
