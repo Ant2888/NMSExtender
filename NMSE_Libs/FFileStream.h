@@ -39,3 +39,16 @@ inline bool SUCCESSMSG(const char* msg){
 inline bool ERRORMSG(const char* msg, int err = 0){
 	return global_Logger.WriteError(msg, err);
 }
+
+// Overloads for std::string
+inline bool WRITEMSG(const std::string& msg){
+	return WRITEMSG(msg.c_str());
+}
+
+inline bool SUCCESSMSG(const std::string& msg){
+	return SUCCESSMSG(msg.c_str());
+}
+
+inline bool ERRORMSG(const std::string& msg, int err = 0){
+	return ERRORMSG(msg.c_str(), err);
+}

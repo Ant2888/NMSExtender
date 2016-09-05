@@ -12,7 +12,7 @@ void OnAttach(){
 	if (isRun) return;
 	isRun = true;
 
-	global_Logger.OpenFile(std::string(RunTimePath()+"\\NMSE\\LOG.txt").c_str(), false);
+	global_Logger.OpenFile((RunTimePath()+"\\NMSE\\LOG.txt").c_str(), false);
 
 	WRITEMSG("---- NMSE CORE Hook Init ----\n");
 	//aloc mem
