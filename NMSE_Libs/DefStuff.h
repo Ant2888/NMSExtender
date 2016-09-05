@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <stdio.h>
+#include <cstdint>
 #include "FFileStream.h"
 
 #define log(x) std::cout << x

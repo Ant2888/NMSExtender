@@ -96,3 +96,28 @@ void** GetImportFunctionAddress(const char* DLL, const char* function, HMODULE m
 	}
 	return NULL;
 }
+
+bool GetDllModule(std::string dllName, HMODULE& modOut, HANDLE proc){
+	HANDLE curProc = proc ? proc : GetCurrentProcess();
+	HMODULE pModules[1024];
+	DWORD cbNeeded;
+
+	//get the list of modules
+	if (EnumProcessModules(curProc, pModules, sizeof(pModules), &cbNeeded)){
+		//iterate through them
+		for (signed int i = 0; i < (cbNeeded/sizeof(HMODULE)); i++){
+			char modName[32];
+			//get their names
+			if (GetModuleBaseName(curProc, pModules[i], modName, sizeof(modName))){
+				//find the dll we're looking for
+				if (strcmp(modName, dllName.c_str()) == 0){
+					//found it
+					modOut = pModules[i];
+					return true;
+				}
+			}
+		}
+	}
+	modOut = 0;
+	return false;
+}

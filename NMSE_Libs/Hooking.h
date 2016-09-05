@@ -1,6 +1,6 @@
 #pragma once
 #include <sys/stat.h>
-
+#include <Psapi.h>
 
 
 static bool DoInjectDLLThread(PROCESS_INFORMATION * info, const char * dllPath, bool sync, bool noTimeout);
@@ -16,3 +16,6 @@ bool CheckFile(std::string fullPath);
 
 //Grabs the address of the function imported into mod from DLL
 void** GetImportFunctionAddress(const char* DLL, const char* function, HMODULE mod);
+
+//Get the HMODULE (modout) of the specify named DLL. 
+bool GetDllModule(std::string dllName, HMODULE& modOut, HANDLE proc = 0);

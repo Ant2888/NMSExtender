@@ -1,4 +1,4 @@
 LIBRARY "DEBUGGING"
 EXPORTS
 OnStart
-RegisterForApplyEvent
+RegisterForPlayerScan

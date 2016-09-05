@@ -39,8 +39,8 @@ bool FFileStream::WriteError(const char* errMsg, int errNum){
 		if((fputs(errMsg, m_File) < 0))
 			return false;
 		if (errNum){
-			char* buff;
-			_itoa(errNum, buff, sizeof(int)*8+1);
+			char buff[10];
+			_itoa_s(errNum, buff, sizeof(int)*8+1);
 			if (fputs(buff, m_File) < 0)
 				return false;
 		}

@@ -3,6 +3,7 @@
 #include "NMSE_Libs\MemoryManager.h"
 #include "EventManager.h"
 #include "OGLHook.h"
+#include "PlayerHooks.h"
 
 HANDLE modHandle;
 HHOOK hkeyHook;
@@ -37,6 +38,7 @@ void OnAttach(){
 	modManager.Init();
 
 	//call last so the hook doesn't start
+	Hook_PlayerEvents();
 	HookOGL();
 	SUCCESSMSG("NMSE Initialized");
 	WRITEMSG("---- NMSE CORE Hook Complete ----\n");
