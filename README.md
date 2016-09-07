@@ -26,7 +26,6 @@ If anyone would like to contribute what ever you have feel free to just email me
   Here I would like you to describe what arguments it takes, if any, and what they mean at all. If you can't figure it out I will gladly take the above without this! I can figure them out pretty fast :)
   
 
-####[Licensing Stuff]
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
